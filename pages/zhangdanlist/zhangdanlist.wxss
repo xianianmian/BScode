@@ -1,0 +1,27 @@
+/* pages/zhangdanlist/zhangdanlist.wxss */
+
+.container {
+  padding: 20rpx;
+}
+
+.item {
+	display: flex;
+	
+	justify-content:flex-start;
+	flex-direction: row;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+  padding: 20rpx 0;
+}
+.zxuhao{width: 150rpx;}
+.ztime {
+	
+	width: 400rpx;
+	color: #333;
+	margin-right: 10rpx;
+}
+
+.zamount {
+	width: 200rpx;
+  color: #ff6347;
+}

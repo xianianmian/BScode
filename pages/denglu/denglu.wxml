@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<!-- 登录页头部 -->
+<view class="zhen">
+	<view class="weidogin" bindtap="gotoqitadenglu" wx:if="{{!showxingxi}}">
+		<van-row gutter="20">
+			<van-col span="8" offset="1">
+				<view>点击登录</view>
+			</van-col>
+			<van-col span="8" offset="7">
+				<image src="{{avatarUrl}}" mode="" class="userinfo-avatar" />
+			</van-col>
+		</van-row>
+	</view>
+	<view class="yidogin" wx:else>
+		<van-row gutter="20">
+			<van-col span="8" offset="1">
+				<view>{{nickName}}</view>
+			</van-col>
+			<van-col span="8" offset="7">
+				<image src="{{avatarUrl}}" mode="" class="userinfo-avatar" />
+			</van-col>
+		</van-row>
+	</view>
+</view>
+<!-- 登录页其它内容 -->
+<view class="qita">
+	<view class="acard" bindtap="gotozhangdan">
+		<view>我的账单</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+	<view class="acard">
+		<view>我要反馈</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+	<view class="acard">
+		<view>隐私政策</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+	<view class="acard">
+		<view>免责申明</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+	<view class="acard">
+		<view>联系作者</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+	<view class="acard" bindtap="logout">
+		<view>退出登录</view>
+			<image src="../../images/右箭头.png" mode="" class="goicon" />
+	</view>
+</view>

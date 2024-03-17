@@ -1,0 +1,10 @@
+<!--pages/tourismdetail/tourismdetail.wxml-->
+<view>
+<text>这是景区详情页</text>
+<view>
+<image src="../../db/旅游图片/R-C.jfif" mode=""/>
+<view class="detail">
+景区详情
+</view>
+</view>
+</view>

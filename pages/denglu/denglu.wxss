@@ -1,0 +1,28 @@
+/* pages/denglu/denglu.wxss */
+.weidogin,.yidogin{
+	background-color: aqua;
+}
+.weidogin view,.yidogin view{
+	padding-top: 20rpx;
+	font-size: 40rpx;
+}
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.acard{
+  margin-top:10rpx ;
+  padding: 10rpx;
+  background-color: bisque;
+  height: 100rpx;
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.acard image{
+  height: 80rpx;
+  width: 80rpx;
+}

@@ -1,0 +1,69 @@
+<!--index.wxml-->
+<!-- 轮播图 -->
+<view class='banner'>
+  <swiper autoplay='true' interval='3000' bindchange='swiperChange' circular='true'>
+    <swiper-item wx:for='{{bannerArr}}' wx:key='index'>
+      <navigator url='{{item.url}}'>
+        <image src='{{item.image}}'></image>
+        <view class='desc'>{{item.title}}</view>
+      </navigator>
+    </swiper-item>
+  </swiper>
+  <!-- 当前的选中的页码 -->
+  <view class='banner-current'>{{currentIndex+1}}/{{bannerArr.length}}</view>
+</view>
+
+<!-- 购物车布局 -->
+<view class='wrapper'>
+
+  <view wx:for='{{list}}' wx:key='index' class="list {{item.isTouchMove?'touch-move-active':''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index='{{index}}'>
+    <view class='item' bindtap="gotoproductdetail">
+      <view class='circle'>
+        <icon wx:if='{{item.selected}}' catchtap="selectedList" data-index='{{index}}' type='success'></icon>
+        <icon wx:else type='circle' catchtap="selectedList" data-index='{{index}}' color="#999"></icon>
+      </view>
+
+      <view class='img'>
+        <image src='{{item.pic}}'></image>
+      </view>
+      <view class='content'>
+        <view class="title">
+          {{item.name}}<van-tag type="success">{{item.type}}</van-tag>
+          <van-tag color="#7232dd">{{item.address}}</van-tag>
+        </view>
+        <view class="subTitle">{{item.info}}</view>
+        <view class="price">￥{{item.price}}</view>
+        <view class='update'>
+          <view class='reduce' catchtap="reduce" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>-</view>
+          <view class='value'>{{item.num}}</view>
+          <view class='add' catchtap="addShop" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>+</view>
+        </view>
+
+      </view>
+
+
+    </view>
+
+    <!-- <view class='remove' bindtap='remove' data-id='{{item.id}}'>删除</view> -->
+  </view>
+</view>
+
+<!-- 结算 -->
+<view class='bottom'>
+  <view class='all'>
+    <icon wx:if="{{selectAllStatus}}" bindtap="selectedAll" type="success" />
+    <icon wx:else type="circle" bindtap="selectedAll" />
+    <text class="check-all">全选</text>
+
+  </view>
+
+  <view class='sum'>
+    <text class='he'>合计</text>
+    <text>{{totalPrice}}</text>
+    <text class='small'>不含运费</text>
+  </view>
+
+  <view class='balance' wx:if='{{selectButton}}' bindtap="balance">结算（{{totalPrice}}）</view>
+  <view class='balance-gray balance' wx:else>结算（{{totalPrice}}）</view>
+
+</view>

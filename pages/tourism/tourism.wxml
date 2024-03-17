@@ -1,0 +1,12 @@
+<!--pages/tourism/tourism.wxml-->
+<view>景点介绍</view>
+<view class="jingdian" wx:for="{{tourismlist}}" wx:key="{{toutismlist.id}}">
+	<van-row bindtap="gototdetail">
+  <van-col span="8"><image src="{{item.avurl}}" mode=""/></van-col>
+  <van-col span="12" offset="2">
+		<view class="tname">{{item.name}}</view>
+		<view class="taddress">地点：<van-tag type="success">{{item.address}}</van-tag></view>
+		<view class="tinfo">{{item.info}}</view>
+	</van-col>
+</van-row>
+</view>

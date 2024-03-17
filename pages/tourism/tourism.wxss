@@ -1,0 +1,5 @@
+/* pages/tourism/tourism.wxss */
+.jingdian image{
+	height: 300rpx;
+	width: 300rpx;
+}

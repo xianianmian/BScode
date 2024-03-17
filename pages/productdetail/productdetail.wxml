@@ -1,0 +1,24 @@
+<!--pages/productdetail/productdetail.wxml-->
+<!-- 商品名称 -->
+<view class='jieshao'>{{productInfo.name}}</view>
+
+
+<!-- 图文信息 -->
+<view class='productInfo'>
+  <view class='xinxi'>商品详情</view>
+  <image  class='img'src="{{productInfo.pic}}"></image>
+  <view class='desc'>
+     <view>{{productInfo.description}}</view>
+    {{productInfo.info}}
+  </view>
+</view>
+
+
+<!-- 购物车 -->
+<view class='shoping'>
+  <view class='shop-img'>
+    <image src='../../images/购物车_爱给网_aigei_com.png' bindtap="goShop"></image>
+  </view>
+  <view class='go-shop' bindtap='addShop'>加入购物车</view>
+  <view class='buy-now'>直接购买</view>
+</view>

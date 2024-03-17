@@ -1,0 +1,76 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/denglu/denglu",
+    "pages/qitadenglu/qitadenglu",
+    "pages/tianjia/tianjia",
+    "pages/productdetail/productdetail",
+    "pages/tourism/tourism",
+    "pages/tourismdetail/tourismdetail",
+    "pages/zhangdanlist/zhangdanlist"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "衡阳特产销售系统",
+    "navigationBarBackgroundColor": "#B1C941"
+  },
+  "tabBar": {
+    "color": "#656565",
+    "selectedColor": "#43bf92",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/主页logo.png",
+        "selectedIconPath": "images/首页2.png"
+      },
+      {
+        "pagePath": "pages/tourism/tourism",
+        "text": "游玩",
+        "iconPath": "images/主页logo.png",
+        "selectedIconPath": "images/首页2.png"
+      },
+      {
+        "pagePath": "pages/denglu/denglu",
+        "text": "我的",
+        "iconPath": "images/我的.png",
+        "selectedIconPath": "images/我的2.png"
+      },
+      {
+        "pagePath": "pages/tianjia/tianjia",
+        "text": "添加",
+        "iconPath": "images/添加.png",
+        "selectedIconPath": "images/添加logo.png"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userProfile": {
+      "desc": "获取你的头像和昵称"
+    },
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    },
+    "scope.userFuzzyLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseLocation",
+    "getFuzzyLocation"
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-card": "@vant/weapp/card/index"
+  }
+}

@@ -1,0 +1,13 @@
+<!--pages/zhangdanlist/zhangdanlist.wxml-->
+<view>我的账单</view>
+
+<view class="container">
+  <view wx:for="{{Zitems}}" wx:key="index" class="item">
+	<view class="zxuhao">
+		序号：{{index}}
+	</view>
+    <view class="ztime">时间：{{item.Ztime}}</view>
+    <view class="zamount">金额：{{item.Zamount}}￥</view>
+  </view>
+</view>
+
