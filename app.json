@@ -8,7 +8,8 @@
     "pages/productdetail/productdetail",
     "pages/tourism/tourism",
     "pages/tourismdetail/tourismdetail",
-    "pages/zhangdanlist/zhangdanlist"
+    "pages/zhangdanlist/zhangdanlist",
+    "pages/tips/tips"
   ],
   "window": {
     "navigationBarTextStyle": "white",

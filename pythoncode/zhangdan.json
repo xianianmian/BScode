@@ -1,0 +1,29 @@
+{
+  "data":[
+    {
+      "userid":"1",
+      "ztime":"2020-12-5",
+      "zamount":"23",
+      "goodid":"1",
+      "goodsrate":4,
+      "idfavorate":true
+    },
+    {
+      "userid":"1",
+      "ztime":"2020-12-5",
+      "zamount":"23",
+      "goodid":"1",
+      "goodsrate":4,
+      "idfavorate":true
+    },
+    {
+      "userid":"1",
+      "ztime":"2020-12-5",
+      "zamount":"23",
+      "goodid":"1",
+      "goodsrate":4,
+      "idfavorate":true
+    }
+
+  ]
+}

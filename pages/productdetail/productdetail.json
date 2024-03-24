@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "ant-icon": "antd-mini/Icon/index",
+    "ant-button": "antd-mini/Button/index"
+  }
 }

@@ -5,25 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-    productInfo:{
-      id: 132,
-      name: '仁义挂面',
-      pic: "../../db/商品图片/O1CN01obIuvc1mUMDA3B4qu_!!2403524957.jpg_Q75.jpg_.avif",
-      info: 'ababababab',
-      isTouchMove: false,
-      price: '20',
-      num: 1,
-      address:'耒阳',
-      type:"农产品"
-    }
+    goodsData:{},
+    xingList: [],
   },
 
+
+  scoring(length) {
+    const arr = ["../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg",] ;
+    console.log(this.data.goodsData.txing,'lllllll');
+    for(let i = 0 ; i<5 ; i++){
+      if(i < length){
+        arr[i] = "../../db/qita/liang.jpg"
+      }
+    }
+    this.setData({
+      xingList:arr
+    });
+  },
+  onLoad(query) {
+    const { id = '1' } = query;
+    wx.request({
+      url: `http://localhost:3002/api3/goods-list/${id}`,
+      success: res => {
+        const goodsData = res.data;
+        this.scoring(res.data.txing);
+        this.setData({
+          goodsData,
+        })
+      }
+    })
+  },
+  onShow(){
+    this.scoring();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

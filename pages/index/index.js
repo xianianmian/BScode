@@ -1,26 +1,6 @@
 // index.js
 const timeUtil = require('../../utils/times');
 
-
-
-
-const defoultdataList = [{
-  id: 132,
-  name: '仁义挂面',
-  pic: "../../db/商品图片/O1CN01obIuvc1mUMDA3B4qu_!!2403524957.jpg_Q75.jpg_.avif",
-  info: 'ababababab',
-  isTouchMove: false,
-  price: '20',
-  num: 1
-}, {
-  id: 456,
-  name: '仁义挂面',
-  pic: "../../db/商品图片/O1CN01nuEoOC2FOVns5bryQ_!!2211244188870-0-tblite.jpg_Q75.jpg_.avif",
-  info: 'ababababab',
-  isTouchMove: false,
-  price: '14',
-  num: 1
-}]
 Page({
   data: {
     currentIndex: 0, //选中的下标
@@ -40,7 +20,7 @@ Page({
         url: "https://www.baidu.com"
       },
     ], //轮播图数据
-
+    number:0,
     startX: 0,
     startY: 0, //开始的坐标
     selectAllStatus: false, //全选
@@ -48,91 +28,103 @@ Page({
     totalPrice: '0.00', //总价格
     num: 0, //选中的选择框
     list: [], //购物车数据
+    shopList:[],
+    showList:[]
   },
+
+
+  onLoad() {
+
+  },
+  scoring(e) {
+    let idx = e.target.dataset.index;
+    const index = e.currentTarget.dataset.id;
+    const arr = this.data.showList;
+    arr.forEach((x) => {
+      if (x.id == index) {
+        x.txing = idx + 1;
+        x.starlist = x.starlist.map((k, j) => {
+          return j <= idx ? "../../db/qita/liang.jpg" : "../../db/qita/an.jpg";
+        });
+      }
+    });
+    this.setData({
+      showList: arr,
+      number: idx + 1,
+    })
+  },
+  changetype(e){
+    // 改item.love ,通过id
+    const list = this.data.showList;
+    const index = e.currentTarget.dataset.index;
+    list.map(x => {
+      if(x.id == index){
+        x.tlove = !x.tlove
+      }
+    })
+    this.setData({
+      showList:list
+    })
+  },
+
   swiperChange: function (e) {
     this.setData({
       currentIndex: e.detail.current
     })
   },
   gotoproductdetail(){
-    console.log("qux");
     wx.navigateTo({
       url: '../productdetail/productdetail',
     })
   },
-  //1.开始触发的事件----获取当前的位置坐标点-------
-  //说明:移动list容器view出现删除或者是隐藏删除按钮  获取第一次触发的坐标点和移动后的坐标点
-  //比较大小 判断左滑动 还是右侧滑动
-  touchstart: function (e) {
+  handleTapItem(item) {
+    const showsList = this.data.shopsList;
     this.setData({
-      startX: e.changedTouches[0].clientX,
-      startY: e.changedTouches[0].clientY
-    })
-  },
-  //2.手指按下后 移动move事件------------------、
-  touchmove: function (e) {
-    // console.log('移动move的坐标',e);
-    //获取滑动的坐标点
-    var list = this.data.list, //操作的元素list容器【】
-      index = e.currentTarget.dataset.index, //当前的元素index
-      startX = this.data.startX,
-      startY = this.data.startY, //开始的坐标
-
-      moveX = e.changedTouches[0].clientX, //滑动的坐标
-      moveY = e.changedTouches[0].clientY; //滑动的坐标
-
-    //判断moveX startX值的大小 左滑 右滑
-    // for(var i=0;i<list.length;i++){//滑动之前把之前的删除都隐藏了 只显示当前的滑块的删除
-    //   list[i].isTouchMove=false;
-    // }  
-    if (moveX < startX) { //左滑
-      list[index].isTouchMove = true;
-    } else {
-      list[index].isTouchMove = false;
+      showList: showsList,
+    });
+    const address = item.title;
+    if (address != '全部') {
+      const arr = this.data.showList.filter((x) => x.taddress == address);
+      console.log(arr);
+      this.setData({
+        showList: arr,
+      });
     }
-    //更新数据list---
-    this.setData({
-      list: list
-    })
-
   },
   //3.获取购物车数据---------------
   getShop: function () {
-    var list = [{
-      id: 132,
-      name: '仁义挂面',
-      pic: "../../db/商品图片/O1CN01obIuvc1mUMDA3B4qu_!!2403524957.jpg_Q75.jpg_.avif",
-      info: 'ababababab',
-      isTouchMove: false,
-      price: '20',
-      num: 1,
-      address:'耒阳',
-      type:"农产品"
-    }, {
-      id: 456,
-      name: '仁义挂面',
-      pic: "../../db/商品图片/O1CN01nuEoOC2FOVns5bryQ_!!2211244188870-0-tblite.jpg_Q75.jpg_.avif",
-      info: 'ababababab',
-      isTouchMove: false,
-      price: '14',
-      num: 1,
-      address:"南岳",
-      type:"面食"
-    }];
-    var num = 0;
-    var selectAllStatus = this.data.selectAllStatus;
-    if (selectAllStatus) {
-      for (var i = 0; i < list.length; i++) {
-        list[i].selected = true
+    wx.request({
+      url: 'http://localhost:3002/api3/goods-list',
+      success:res=>{
+        const goodsdata = res.data;
+        const updatedGoodsData = goodsdata.map(x => {
+          return {
+            ...x,
+            starlist: ["../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg","../../db/qita/an.jpg",]
+          };
+        });
+        var num = 0;
+        var selectAllStatus = this.data.selectAllStatus;
+        if (selectAllStatus) {
+          for (var i = 0; i < list.length; i++) {
+            updatedGoodsData[i].selected = true
+          }
+          //选中num 
+          num = updatedGoodsData.length;
+        }
+        //渲染
+        this.setData({
+          shopList:updatedGoodsData,
+          showList:updatedGoodsData,
+          num: num
+        })
       }
-      //选中num 
-      num = list.length;
-    }
-    //渲染list
-    this.setData({
-      list: list,
-      num: num
     })
+    //渲染
+    // this.setData({
+    //   list: list,
+    //   num: num
+    // })
     //价格
     this.goTotalPrice();
   },
@@ -163,12 +155,12 @@ Page({
   //5.-总价格----每一个选中后计算 总价格=当前的list.price*list.num--------
   goTotalPrice: function () {
     //1.获取所有的元素list  2.查看遍历所有的数据 选中的元素  3.计算 
-    var list = this.data.list;
+    var list = this.data.showList;
     // console.log(this.data.list);
     var total = 0; //总价格
     for (var i = 0; i < list.length; i++) {
       if (list[i].selected) {
-        total += list[i].price * list[i].num
+        total += list[i].tprice * list[i].num
       }
     }
     //更改价格
@@ -181,7 +173,7 @@ Page({
   //1.点击选中 再点击取消  就是修改当前的元素的selected状态 2.当前的当前的元素下标 
   selectedList: function (e) {
     var index = e.currentTarget.dataset.index;
-    var list = this.data.list;
+    var list = this.data.showList;
     var num = this.data.num; //选中的数量
     //获取原来的selected状态 
     var selected = list[index].selected;
@@ -196,7 +188,7 @@ Page({
     }
     //4.更新list数据---选中状态和选中的个数--
     this.setData({
-      list: list,
+      showList: list,
       num: num
     })
     console.log('选中的个数', num);
@@ -229,7 +221,7 @@ Page({
   selectedAll: function () {
     //1.获取之前的全选的状态
     var selectAllStatus = !this.data.selectAllStatus; //点击对之前的全选取反
-    var list = this.data.list;
+    var list = this.data.showList;
     var num = this.data.num;
     var selectButton = this.data.selectButton;
 
@@ -247,7 +239,7 @@ Page({
     }
     //4.更新数据
     this.setData({
-      list: list,
+      showList: list,
       selectAllStatus: selectAllStatus,
       num: num,
       selectButton: selectButton
@@ -259,7 +251,7 @@ Page({
   //8.增加购物车数据----
   addShop: function (e) {
     //1.点击按钮 增加数据  获取当前的元素index  获取当前num++
-    var list = this.data.list;
+    var list = this.data.showList;
     var index = e.currentTarget.dataset.index;
     var num = e.currentTarget.dataset.num;
 
@@ -269,7 +261,7 @@ Page({
 
     //数据更新
     this.setData({
-      list: list
+      showList: list
     })
     // 此处应该修改数据库
     //更改价格
@@ -279,7 +271,7 @@ Page({
 
   //9.减功能---
   reduce: function (e) {
-    var list = this.data.list;
+    var list = this.data.showList;
     var index = e.currentTarget.dataset.index;
     var num = e.currentTarget.dataset.num;
 
@@ -295,30 +287,26 @@ Page({
     list[index].num = num;
     //数据更新
     this.setData({
-      list: list
+      showList: list
     })
     //更改价格
     this.goTotalPrice();
   },
   //10:支付
   balance: function (e) {
-    //用户信息   传递总计价 总的其他信息
-    // wx.redirectTo({
-    //   url: '../complete/complete',
-    // })
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 2000,
       success:res=>{
         //上传数据库
-        const zhangdanitem = {}
-        zhangdanitem.ztime = timeUtil.formatTime();
-        zhangdanitem.Zamount = this.data.totalPrice ;
-        // console.log(zhangdanitem,'zhangdan');
-        // console.log(timeUtil.formatTime());
+
       }
+
     })
+    wx.redirectTo({
+      url: '/pages/index/index'
+    });
   },
 
   onShow: function () {

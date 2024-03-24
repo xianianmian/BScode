@@ -10,4 +10,9 @@
     <view class="zamount">金额：{{item.Zamount}}￥</view>
   </view>
 </view>
+<ant-button
+    type="primary">
+    主要按钮
+  </ant-button>
+  <ant-icon type="HeartOutline"></ant-icon>
 

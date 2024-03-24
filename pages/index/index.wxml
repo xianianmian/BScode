@@ -1,4 +1,9 @@
 <!--index.wxml-->
+
+<view class="tips">
+  <!-- <button class="tipsbtn" catchtap="gotoTips"> 小提示</button> -->
+  <tipx-item></tipx-item>
+</view>
 <!-- 轮播图 -->
 <view class='banner'>
   <swiper autoplay='true' interval='3000' bindchange='swiperChange' circular='true'>
@@ -13,10 +18,13 @@
   <view class='banner-current'>{{currentIndex+1}}/{{bannerArr.length}}</view>
 </view>
 
+
+
+
 <!-- 购物车布局 -->
 <view class='wrapper'>
 
-  <view wx:for='{{list}}' wx:key='index' class="list {{item.isTouchMove?'touch-move-active':''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index='{{index}}'>
+  <view wx:for='{{showList}}' wx:key='index' class="list " data-index='{{index}}'>
     <view class='item' bindtap="gotoproductdetail">
       <view class='circle'>
         <icon wx:if='{{item.selected}}' catchtap="selectedList" data-index='{{index}}' type='success'></icon>
@@ -24,27 +32,34 @@
       </view>
 
       <view class='img'>
-        <image src='{{item.pic}}'></image>
+        <image src='{{item.tavartar}}'></image>
       </view>
       <view class='content'>
-        <view class="title">
-          {{item.name}}<van-tag type="success">{{item.type}}</van-tag>
-          <van-tag color="#7232dd">{{item.address}}</van-tag>
+        <view class="shang">
+          {{item.tname}}
+          <ant-icon type="{{item.tlove ? 'HeartOutline' : 'HeartFill'}}" style="{{item.tlove ? 'ont-size:40rpx;color:gray' : 'ont-size:40rpx;color:red'}}"></ant-icon>
+          <van-tag color="#7232dd">{{item.taddress}}</van-tag>
+
+
         </view>
-        <view class="subTitle">{{item.info}}</view>
-        <view class="price">￥{{item.price}}</view>
-        <view class='update'>
-          <view class='reduce' catchtap="reduce" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>-</view>
+        <view class="zhong">{{item.tdetail}}</view>
+        <view class="xia">
+          <view class="price">￥<text> {{item.tprice}}</text></view>
+          <view class="btns">
+            <view class="stars-box">
+            <block wx:for="{{item.starlist}}" wx:key="index" wx:for-item="item1">
+              <image wx:for-index="index" src="{{item1}}" class="star" data-index="{{index}}" catchtap="scoring" data-id="{{item.id}}">
+              </image>
+            </block>
+          </view>
+           <button class='reduce' catchtap="reduce" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>-</button>
           <view class='value'>{{item.num}}</view>
-          <view class='add' catchtap="addShop" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>+</view>
+          <button class='add' catchtap="addShop" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>+</button>
+          </view>
+         
         </view>
-
       </view>
-
-
     </view>
-
-    <!-- <view class='remove' bindtap='remove' data-id='{{item.id}}'>删除</view> -->
   </view>
 </view>
 

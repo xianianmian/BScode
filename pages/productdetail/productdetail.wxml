@@ -1,17 +1,41 @@
 <!--pages/productdetail/productdetail.wxml-->
 <!-- 商品名称 -->
-<view class='jieshao'>{{productInfo.name}}</view>
+<view class="detail-container">
+  <image class="avatar" src="{{goodsData.tavartar}}" mode="aspectFill"></image>
+  <view class="info">
+    <view class="name">商品名称 : <text>{{goodsData.tname}}</text> </view>
+    <view class="price">价格： <text>{{goodsData.tprice}}¥</text> </view>
+    <view class="address">地址： <text>{{goodsData.taddress}}</text> </view>
+    <view class="pingjia">
+      <view class="love">
+        <text bindtap="changetype" data-index="{{item.id}}">
 
-
-<!-- 图文信息 -->
-<view class='productInfo'>
-  <view class='xinxi'>商品详情</view>
-  <image  class='img'src="{{productInfo.pic}}"></image>
-  <view class='desc'>
-     <view>{{productInfo.description}}</view>
-    {{productInfo.info}}
+          <ant-icon type="{{goodsData.tlove ? 'HeartOutline' : 'HeartFill'}}" style="{{goodsData.tlove ? 'font-size:40rpx;color:gray' : 'font-size:40rpx;color:red'}}"></ant-icon>
+        </text>
+        <text style="{{goodsData.tlove ? 'color:gray' : 'color:red'}}">{{goodsData.tlove ? '喜欢' : '不喜欢'}}{{goodsData.tlove}}</text>
+      </view>
+      <view class="xing">
+        <view class="stars-box">
+          <text>评分：</text>
+          <block wx:for="{{xingList}}" wx:key="index">
+            <image
+              wx:for-index="{{index}}"
+              src="{{item}}"
+              class="star"
+              data-index="{{index}}"
+            >
+            </image>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="detail">
+    <view> 商品详情：</view>
+    <view class="info"> {{goodsData.tdetail}}</view>
   </view>
 </view>
+
 
 
 <!-- 购物车 -->

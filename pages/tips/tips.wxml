@@ -1,0 +1,10 @@
+<!--pages/tips/tips.wxml-->
+<view>
+<text>这是提示页面</text>
+<view>晴天</view>
+<view>交通情况：好</view>
+<view>攻略推荐</view>
+<view>
+啊八八八八吧
+</view>
+</view>

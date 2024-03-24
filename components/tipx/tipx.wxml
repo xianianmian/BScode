@@ -1,0 +1,9 @@
+<view class="xuanfu" catchtap="handleShowBasic" data-position="top" style="position: fixed; z-index:4;left:{{posX}}px;top:{{posY}}px" catchtouchmove="touchMove" catchtouchstart="touchStart" catchtouchend="touchEnd">
+    <view>
+        <view class="stick">
+            <view>
+                <image mode="scaleToFill" src="../../db/qita/an.jpg" style="width:75px;height:75px;"></image>
+            </view>
+        </view>
+    </view>
+</view>
