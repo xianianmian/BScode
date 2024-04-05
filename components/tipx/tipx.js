@@ -15,7 +15,7 @@ Component({
     chaX: 0,
     chaY: 0,
     posX: 0, // 初始 X 坐标
-    posY: 10, // 初始 Y 坐标
+    posY: 400, // 初始 Y 坐标
   },
 
   /**
@@ -42,13 +42,13 @@ Component({
     },
     touchEnd : function(e) {
       if (!this.data.touch) return;
-      const new_posX = this.data.posX > 150 ? 250 : 0;
-      const new_posY = this.data.posY > 100 ? 380 : 10;
+      // const new_posX = this.data.posX > 150 ? 280 : 0;
+      const new_posY = this.data.posY > 100 ? 420 : 10;
       this.setData({
         touch: false,
         chaX: 0,
         chaY: 0,
-        posX: new_posX,
+        posX: 0,
         posY: new_posY
       });
     }

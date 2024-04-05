@@ -4,19 +4,41 @@ const defoultavt = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd
 Page({
   data: {
     avatarUrl:defoultavt,
-    nickName:"",
+    nickName:'',
+    passWord:'',
     showxingxi:false,
-    refreshCount: 0
+    refreshCount: 0,
+    itemsCustom:[
+      {
+        title:'全部订单',
+        icon:'../../db/tubiao/shezhil.png',
+        tag:'1'
+      },
+      {
+        title:'待付款',
+        icon:'../../db/tubiao/daifukuan.png',
+        tag:'2'
+      },
+      {
+        title:'待评价',
+        icon:'../../db/tubiao/daipingjia.png',
+        tag:'3'
+      },
+    ],
   },
   gotoqitadenglu(e){
-    wx.navigateTo({
+         wx.navigateTo({
       url: '../qitadenglu/qitadenglu',
     })
+ 
   },
   gotozhangdan(){
     wx.navigateTo({
       url: '../zhangdanlist/zhangdanlist',
     })
+  },
+  handleTapItem(){
+    this.gotozhangdan()
   },
   logout(){
     this.setData({
@@ -30,7 +52,8 @@ Page({
       this.setData({
         showxingxi:true,
         avatarUrl:app.globalData.userInfo.avatarUrl,
-        nickName:app.globalData.userInfo.nickName
+        nickName:app.globalData.userInfo.nickName,
+        passWord:app.globalData.userInfo.passWord,
       })
     }
   },
@@ -46,7 +69,8 @@ Page({
       this.setData({
         showxingxi:true,
         avatarUrl:app.globalData.userInfo.avatarUrl,
-        nickName:app.globalData.userInfo.nickName
+        nickName:app.globalData.userInfo.nickName,
+        passWord:app.globalData.userInfo.passWord,
       })
       // // 刷新完成后重置计数器
       // this.setData({

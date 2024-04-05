@@ -16,7 +16,8 @@ App({
   globalData: {
     userInfo: {
       avatarUrl:'',
-      nickName:''
+      nickName:'',
+      passWord:'',
     }
   }
 })

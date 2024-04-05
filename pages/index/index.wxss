@@ -1,21 +1,8 @@
-
-page{
-  background: #ffffff;
+/* pages/tourism/tourism.wxss */
+page {
+  background: #f7f7f7;
   position: relative;
 }
-
-
-.tips{
-  position: fixed;
-  /* top:300; */
-  right: 0;
-  top: 75px;
-  z-index: 3;
-}
-.tips .tipsbtn{
-  background-color: rgb(245, 244, 239);
-}
-
 
 .banner {
   position: relative;
@@ -57,131 +44,44 @@ page{
   z-index: 1;
 }
 
-/*   购物车布局 */
-.wrapper{
-  margin-bottom: 200rpx;
+/* @font-face {
+  font-family: "阿里妈妈刀隶体 Regular";
+  font-weight: 400;
+  src: url("//at.alicdn.com/wf/webfont/QUgw2VVABrpw/ncfLjhPzzHPS.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/QUgw2VVABrpw/uWKpVO2ffRIe.woff") format("woff");
+  font-display: swap;
+} */
+
+.title {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #fff;
 }
-.list{
-  background: rgb(241, 245, 241);
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  overflow: hidden;
-  margin:10rpx 0rpx;
-  border-radius: 20rpx;
-  min-height: 250rpx;
+.title image{
+  width: 60%;
+  height: 40px;
 }
 
-/* 左侧内容 */
-.item{
+.jingdian{
+  margin:10px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
   display: flex;
-  align-items: center;
-  width: 100%;
+  flex-direction: row;
+  /* align-items: center; */
+  font-size: 14px;
+  box-shadow: 1px 1rpx rgb(177,201,65);
 }
-.circle{
-  padding-right: 10rpx;
-}
-.img image{
+.jingdian .left image {
+  height: 240rpx;
   width: 240rpx;
-  height: 220rpx;
+  border-radius: 5px;
 }
-
-.content{
-  /* height: 180rpx; */
-  position: relative;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  width: 460rpx;
+.jingdian .right{
+  padding-left: 10px;
 }
-.shang{
-  margin-bottom: 10rpx;
-  overflow: hidden;
-  text-overflow:ellipsis; 
-white-space:nowrap; 
-}
-.stars-box{
-  margin-right: 10rpx;
-}
- .stars-box image{
-  width: 30rpx;
-  height: 30rpx;
-}
-.zhong{
-  padding: 5rpx 0;
-  font-size: 30rpx;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-indent: 20rpx;
-}
-.xia{
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.xia .price text{ color: red;}
-.xia .btns{
-  display: inherit;
-
-}
-.xia .btns button{
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  width: 50rpx;
-  padding: 0;
-}
-.xia .value{
-  width: 50rpx;
-  text-align: center;
-}
-
-/* 结算 */
-
-.bottom {
-  position: fixed;
-  background: #fff;
-  display: flex;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.all  {
-  display: flex;
-  align-items: center;
-  padding-left: 20rpx;
-}
-.sum text {
-  color: #51b897;
-}
-
-.sum {
-  flex: 1;
-  padding-top: 20rpx;
-  text-align: right;
-}
-
-.sum .he {
-  color: #000;
-  margin-right: 10rpx;
-}
-
-.sum .small {
-  font-size: 24rpx;
-  color: #999;
-  margin-left: 10rpx;
-}
-
-.balance {
-  margin-left: 10rpx;
-  padding: 20rpx;
-  text-align: right;
-  background: #51b897;
-  color: #fff;
-}
-.balance-gray{
-  background: #999;
+.jingdian .jdname{
+  font-size: 16px;
 }

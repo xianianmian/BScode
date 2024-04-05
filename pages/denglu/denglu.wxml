@@ -1,51 +1,102 @@
 <!--index.wxml-->
 <!-- 登录页头部 -->
-<view class="zhen">
-	<view class="weidogin" bindtap="gotoqitadenglu" wx:if="{{!showxingxi}}">
-		<van-row gutter="20">
-			<van-col span="8" offset="1">
-				<view>点击登录</view>
-			</van-col>
-			<van-col span="8" offset="7">
-				<image src="{{avatarUrl}}" mode="" class="userinfo-avatar" />
-			</van-col>
-		</van-row>
+<view class="head" bindtap="gotoqitadenglu">
+	<view class="{{!showxingxi ? 'username': 'ausername'}}">
+		{{!showxingxi ? '未登陆': nickName }}
 	</view>
-	<view class="yidogin" wx:else>
-		<van-row gutter="20">
-			<van-col span="8" offset="1">
-				<view>{{nickName}}</view>
-			</van-col>
-			<van-col span="8" offset="7">
-				<image src="{{avatarUrl}}" mode="" class="userinfo-avatar" />
-			</van-col>
-		</van-row>
+	<view>
+		<image mode="scaleToFill" src="{{!showxingxi ? '../../db/tubiao/touxiang.png'  : avatarUrl}}" />
 	</view>
 </view>
+
+<view class="zhangdan">
+	<view class="ztitle">
+		我的订单
+	</view>
+	<view class="menulist">
+		<view class="menu-item" catchtap="gotozhangdan" >
+      <image src="../../db/tubiao/alldingdan.png" mode=""/>
+      <view>全部订单</view>
+    </view>
+		<view class="menu-item">
+      <image src="../../db/tubiao/daifukuan.png" mode=""/>
+      <view>待付款</view>
+    </view>
+		<view class="menu-item">
+      <image src="../../db/tubiao/daipingjia.png" mode=""/>
+      <view>待评价</view>
+    </view>
+	</view>
+</view> 
 <!-- 登录页其它内容 -->
-<view class="qita">
-	<view class="acard" bindtap="gotozhangdan">
-		<view>我的账单</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
+ <view class="qita">
+	<view class="acard" >
+		<view class="left">
+		<image class="iconimg" src="../../db/tubiao/shezhi.png" mode=""/>
+		设置
+		</view>
+		<image src="../../images/右箭头.png" mode="" class="goicon" />
 	</view>
+
 	<view class="acard">
-		<view>我要反馈</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
+		<view class="left">
+		<image class="iconimg" src="../../db/tubiao/yinsi.png" mode=""/>
+		隐私政策
+		</view>
+		<image src="../../images/右箭头.png" mode="" class="goicon" />
 	</view>
-	<view class="acard">
-		<view>隐私政策</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
-	</view>
-	<view class="acard">
-		<view>免责申明</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
-	</view>
-	<view class="acard">
-		<view>联系作者</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
-	</view>
+
 	<view class="acard" bindtap="logout">
-		<view>退出登录</view>
-			<image src="../../images/右箭头.png" mode="" class="goicon" />
+		<view class="left">
+		<image class="iconimg" src="../../db/tubiao/logout.png" mode=""/>
+		退出
+		</view>
+		<image src="../../images/右箭头.png" mode="" class="goicon" />
 	</view>
 </view>
+
+<!-- <view class="xia">
+    <view class="lists">
+      <ant-list-item
+        class="alist"
+
+        image="../../db/tubiao/yinsi.png"
+        arrow="right"
+        bindtap="handleTap"
+        data-info="隐私政策"
+      >
+        隐私政策
+      </ant-list-item>
+      <ant-list-item
+        image="../../db/tubiao/shezhil.png"
+        arrow="right"
+        bindtap="handleTap"
+        data-info="设置"
+      >
+        设置
+      </ant-list-item>
+      <ant-list-item
+        image="../../db/tubiao/logout.png"
+        arrow="right"
+        bindtap="logout"
+        data-info="退出"
+      >
+        退出
+      </ant-list-item>
+			<ant-list-item
+      disabled
+      image="PayCircleOutline"
+      arrow="right"
+      data-info="总资产">
+      总资产
+    </ant-list-item>
+		    <ant-list-item
+      image="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*XMCgSYx3f50AAAAAAAAAAABkARQnAQ"
+      arrow="right"
+      bind:tap="handleTap"
+      data-info="图片">
+      图片
+    </ant-list-item>
+  </view>
+  </view> -->
+	<!-- <image src="../../db/tubiao/logout.png" mode=""/> -->

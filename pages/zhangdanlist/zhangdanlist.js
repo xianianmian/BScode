@@ -5,17 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Zitems: [
-      { Ztime: '2024.03.17', Zamount: 24 },
-      // 在这里继续添加更多购买信息
-    ]
+    AllZhangdanList: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  getTotalPrice(arr){
+    return arr.reduce(( a ,b) => a + (b.tprice * b.num),0)
+  },
+  gotozhiping(e) {
+    let info = e.currentTarget.dataset.info;
+    let { id, buyTime, ifpingjia, ifzhifu } = info;
+    wx.navigateTo({
+      url: `../zhiping/zhiping?id=${id}&buyTime=${buyTime}&ifpingjia=${ifpingjia}&ifzhifu=${ifzhifu}`,
+    });
+  },
   onLoad(options) {
-
+    let storagedataList = wx.getStorageSync('AllZhangdanList') || [];
+    let AllZhangdanList = []
+    storagedataList.forEach((item,index) =>{
+      AllZhangdanList.push(Object.assign(item ,{ totalPrice : this.getTotalPrice(item.zhangdanItem)}))
+    })
+    this.setData({
+      AllZhangdanList,
+    })
   },
 
   /**

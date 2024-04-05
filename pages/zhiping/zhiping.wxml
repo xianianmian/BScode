@@ -1,3 +1,4 @@
+<!--pages/zhiping.wxml-->
 <!--pages/productdetail/productdetail.wxml-->
 <!-- 商品名称 -->
 <view class="detail-container">
@@ -16,9 +17,24 @@
     </view>
 
   </view>
-  <view class="pingjia">用户评价：</view>
-  <view class="pingjiacontent">
+
+
+</view>
+
+<van-dialog
+  use-slot
+	title="评价"
+	height="60%"
+	width="80%"
+  show="{{ show }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  bind:close="onClose"
+  bind:getuserinfo="getUserInfo"
+>
+<view class="pingjiacontent">
       <view class="tlove" catchtap="changetlove" data-index="{{goodsData.id}}">
+				<view>是否喜欢：</view>
         <image src="{{goodsData.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
       </view>
       <view class="xing">
@@ -31,15 +47,13 @@
         </view>
       </view>
   </view>
-</view>
+</van-dialog>
 
 
 
 <!-- 购物车 -->
 <view class='shoping'>
-  <view class='shop-img'>
-    <image src='../../images/购物车_爱给网_aigei_com.png' bindtap="goShop"></image>
-  </view>
-  <view class='go-shop' bindtap='addShopCar'>加入购物车</view>
-  <view class='buy-now' catchtap="jiesuan">直接购买</view>
+	<view class="pingjia" bindtap="opendialog" >点击评价</view>
+  <view class='buy' catchtap="fukuan">付款</view>
+  <view class='buy' catchtap="fanhui">返回</view>
 </view>

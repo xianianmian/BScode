@@ -1,18 +1,44 @@
 <!--pages/zhangdanlist/zhangdanlist.wxml-->
-<view>我的账单</view>
+<view class="page">
+  <view>我的账单</view>
 
-<view class="container">
-  <view wx:for="{{Zitems}}" wx:key="index" class="item">
-	<view class="zxuhao">
-		序号：{{index}}
-	</view>
-    <view class="ztime">时间：{{item.Ztime}}</view>
-    <view class="zamount">金额：{{item.Zamount}}￥</view>
+  <view class="zhangdancontent">
+    <view class="zhangdanList" wx:for="{{AllZhangdanList}}" wx:key="index1" wx:for-item="item1" wx:for-index="index1">
+      <view class="zhangdan-item">
+        <view class="jiluTime">
+          购买时间：<text class="buytime">{{item1.jiluTime}}</text>
+        </view>
+        <view class="detail" wx:for="{{item1.zhangdanItem}}" wx:key="index2" wx:for-item="item2" wx:for-index="index2">
+          <view class="detailinfo" bindtap="gotozhiping" data-info="{{item2}}">
+            <view> 购买商品：{{item2.tname}} X{{item2.num}}</view>
+          </view>
+          <view class="rate" wx:if="{{item1.ifpingjia}}">
+            <view>评价：{{item2.txing}} 星</view>
+            <view>
+              <view class="tlove">
+                <image src="{{item2.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="totalPrice">
+          总价：{{item1.totalPrice}}￥
+        </view>
+        <view class="zhuangtai">
+          <view class="zhifu" wx:if="{{item1.ifzhifu}}">
+            已支付
+          </view>
+          <view class="daizhifu" wx:else="">
+            待支付
+          </view>
+          <view class=" yipingjia" wx:if="{{item1.ifpingjia}}">
+            已评价
+          </view>
+          <view class="daipingjia" wx:else="">
+            待评价
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
-<ant-button
-    type="primary">
-    主要按钮
-  </ant-button>
-  <ant-icon type="HeartOutline"></ant-icon>
-

@@ -1,1 +1,9 @@
 /* components/tipx.wxss */
+.stick{
+	background-color: #ffffff;
+	border-radius: 15px;
+}
+image{
+	width: 80px;
+	height: 80px;
+}

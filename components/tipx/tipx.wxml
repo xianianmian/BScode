@@ -2,7 +2,7 @@
     <view>
         <view class="stick">
             <view>
-                <image mode="scaleToFill" src="../../db/qita/an.jpg" style="width:75px;height:75px;"></image>
+                <image mode="scaleToFill" src="../../db/tubiao/xiaotip.png" style="width:45px;height:45px;"></image>
             </view>
         </view>
     </view>

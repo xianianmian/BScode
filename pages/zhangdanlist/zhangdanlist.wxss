@@ -1,27 +1,63 @@
 /* pages/zhangdanlist/zhangdanlist.wxss */
 
-.container {
-  padding: 20rpx;
+.page{
+	color: gray;
 }
 
-.item {
+.zhangdancontent{
+	margin:5px;
+	font-size: 16px;
+	
+}
+
+.zhangdan-item{
+	background-color: #fff;
+	padding: 5px;
+	box-shadow: 1px 1px red;
+	margin: 10px 0;
+	position: relative;
+	border-radius: 10px;
+}
+.zhangdan-item .jiluTime{
+	font-size: 20px;
+	padding: 0 5px;
+}
+.zhangdan-item .jiluTime text{
+	color:red;
+}
+.detail{
+}
+.detail .detailinfo{
+	height: 40px;
+	line-height: 40px;
+	background-color: rgb(218, 236, 191);
+	padding-left: 10px;
+	border-radius: 10px;
+	margin: 2px 0;
+}
+.rate{
 	display: flex;
-	
-	justify-content:flex-start;
-	flex-direction: row;
-  align-items: center;
-  border-bottom: 1rpx solid #eee;
-  padding: 20rpx 0;
+	align-items: center;
+	justify-content: flex-start;
 }
-.zxuhao{width: 150rpx;}
-.ztime {
-	
-	width: 400rpx;
-	color: #333;
-	margin-right: 10rpx;
+.rate .tlove image{
+	margin-left: 20px;
+	height: 30px;
+	width: 20px;
 }
+.zhuangtai{
+	position: absolute;
+	background-color: rgb(255, 255, 255);
+	top: 0;
+	right: 10px;
+	min-width: 80px;
+	text-align: center;
+	font-size: 24px;
+}
+.zhuangtai .zhifu, .zhuangtai .yipingjia{
+	color:green;
 
-.zamount {
-	width: 200rpx;
-  color: #ff6347;
+}
+.zhuangtai .daizhifu ,.zhuangtai .daipingjia{
+	color:red;
 }

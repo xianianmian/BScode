@@ -9,6 +9,7 @@ Page({
   data: {
     avatarUrl: defaultAvatarUrl,
     nickName:'',
+    passWord:'',
     theme: wx.getSystemInfoSync().theme,
   },
  
@@ -29,13 +30,17 @@ Page({
     })
     app.globalData.userInfo.nickName = nickName
   },
+  onInputChangePs(e) {
+    const passWord = e.detail.value
+    this.setData({
+      passWord,
+    })
+    app.globalData.passWord = passWord
+  },
   formSubmit(e){
      wx.showToast({
        title: 'cg',
      })
-    //  wx.switchTab({
-    //    url: '../denglu/denglu',
-    //  }),
      wx.navigateBack({
       delta: 1,
       success: function () {

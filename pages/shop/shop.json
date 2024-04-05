@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "ant-icon": "antd-mini/Icon/index",
+    "ant-button": "antd-mini/Button/index",
+    "tipx-item": "/components/tipx/tipx",
+    "ant-picker": "antd-mini/Picker/index",
+    "ant-list-item": "antd-mini/List/ListItem/index",
+    "ant-list": "antd-mini/List/index",
+    "ant-container": "antd-mini/Container/index",
+    "van-popup": "@vant/weapp/popup/index"
+  }
+}

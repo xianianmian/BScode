@@ -1,28 +1,84 @@
 /* pages/denglu/denglu.wxss */
-.weidogin,.yidogin{
-	background-color: aqua;
+page{
+  background-color: rgb(243,243,243);
 }
-.weidogin view,.yidogin view{
-	padding-top: 20rpx;
-	font-size: 40rpx;
+
+.head{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  padding: 0 20px;
 }
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.username{
+  font-size: 25px;
 }
+.ausername{
+  font-size: 25px;
+  color:rgb(177,201,65);
+}
+image{
+    width: 50px;
+    height: 50px;
+    line-height: 80rpx;
+    border-radius: 50%;
+}
+
+
+.zhangdan{
+  background-color: #ffffff;
+  border-radius:10px ;
+  margin: 10px;
+  padding: 5px;
+}
+.ztitle{
+  padding-left: 15px;
+  font-size: 20px;
+}
+.menulist{
+  display: flex;
+  align-items: center;
+
+}
+.menu-item{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.menu-item image{
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+
 .acard{
-  margin-top:10rpx ;
-  padding: 10rpx;
-  background-color: bisque;
+  /* background-color: bisque; */
   height: 100rpx;
   display: flex;
   justify-content:space-between;
   align-items:center;
 }
+.acard .left{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.iconimg{
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
 .acard image{
-  height: 80rpx;
-  width: 80rpx;
+  height: 50rpx;
+  width: 50rpx;
 }

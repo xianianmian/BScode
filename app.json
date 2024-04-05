@@ -9,11 +9,13 @@
     "pages/tourism/tourism",
     "pages/tourismdetail/tourismdetail",
     "pages/zhangdanlist/zhangdanlist",
-    "pages/tips/tips"
+    "pages/tips/tips",
+    "pages/shop/shop",
+    "pages/zhiping/zhiping"
   ],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "衡阳特产销售系统",
+    "navigationBarTitleText": "衡阳游悦通",
     "navigationBarBackgroundColor": "#B1C941"
   },
   "tabBar": {
@@ -23,26 +25,26 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/主页logo.png",
-        "selectedIconPath": "images/首页2.png"
+        "iconPath": "./db/tubiao/shouyea.png",
+        "selectedIconPath": "./db/tubiao/shouyel.png"
       },
       {
-        "pagePath": "pages/tourism/tourism",
-        "text": "游玩",
-        "iconPath": "images/主页logo.png",
-        "selectedIconPath": "images/首页2.png"
+        "pagePath": "pages/shop/shop",
+        "text": "商城",
+        "iconPath": "./db/tubiao/shangchenga.png",
+        "selectedIconPath": "./db/tubiao/shangchengl.png"
       },
       {
         "pagePath": "pages/denglu/denglu",
         "text": "我的",
-        "iconPath": "images/我的.png",
-        "selectedIconPath": "images/我的2.png"
+        "iconPath": "./db/tubiao/wodea.png",
+        "selectedIconPath": "./db/tubiao/wodel.png"
       },
       {
-        "pagePath": "pages/tianjia/tianjia",
-        "text": "添加",
-        "iconPath": "images/添加.png",
-        "selectedIconPath": "images/添加logo.png"
+        "pagePath": "pages/zhangdanlist/zhangdanlist",
+        "text": "账单",
+        "iconPath": "./db/tubiao/shouyea.png",
+        "selectedIconPath": "./db/tubiao/shouyel.png"
       }
     ]
   },
@@ -72,6 +74,9 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
     "van-tag": "@vant/weapp/tag/index",
-    "van-card": "@vant/weapp/card/index"
+    "van-card": "@vant/weapp/card/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }

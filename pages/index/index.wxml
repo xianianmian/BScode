@@ -1,10 +1,4 @@
-<!--index.wxml-->
-
-<view class="tips">
-  <!-- <button class="tipsbtn" catchtap="gotoTips"> 小提示</button> -->
-  <tipx-item></tipx-item>
-</view>
-<!-- 轮播图 -->
+<!--pages/tourism/tourism.wxml-->
 <view class='banner'>
   <swiper autoplay='true' interval='3000' bindchange='swiperChange' circular='true'>
     <swiper-item wx:for='{{bannerArr}}' wx:key='index'>
@@ -14,71 +8,24 @@
       </navigator>
     </swiper-item>
   </swiper>
-  <!-- 当前的选中的页码 -->
-  <view class='banner-current'>{{currentIndex+1}}/{{bannerArr.length}}</view>
+</view>
+<image src="https://img.alicdn.com/imgextra/i4/867636007/O1CN01TUTepL1uFFtM2AMwJ_!!867636007.jpg" mode=""/>
+
+<view class="title">
+<image src="../../db/title/rmjd.png" mode=""/>
 </view>
 
-
-
-
-<!-- 购物车布局 -->
-<view class='wrapper'>
-
-  <view wx:for='{{showList}}' wx:key='index' class="list " data-index='{{index}}'>
-    <view class='item' bindtap="gotoproductdetail">
-      <view class='circle'>
-        <icon wx:if='{{item.selected}}' catchtap="selectedList" data-index='{{index}}' type='success'></icon>
-        <icon wx:else type='circle' catchtap="selectedList" data-index='{{index}}' color="#999"></icon>
-      </view>
-
-      <view class='img'>
-        <image src='{{item.tavartar}}'></image>
-      </view>
-      <view class='content'>
-        <view class="shang">
-          {{item.tname}}
-          <ant-icon type="{{item.tlove ? 'HeartOutline' : 'HeartFill'}}" style="{{item.tlove ? 'ont-size:40rpx;color:gray' : 'ont-size:40rpx;color:red'}}"></ant-icon>
-          <van-tag color="#7232dd">{{item.taddress}}</van-tag>
-
-
-        </view>
-        <view class="zhong">{{item.tdetail}}</view>
-        <view class="xia">
-          <view class="price">￥<text> {{item.tprice}}</text></view>
-          <view class="btns">
-            <view class="stars-box">
-            <block wx:for="{{item.starlist}}" wx:key="index" wx:for-item="item1">
-              <image wx:for-index="index" src="{{item1}}" class="star" data-index="{{index}}" catchtap="scoring" data-id="{{item.id}}">
-              </image>
-            </block>
-          </view>
-           <button class='reduce' catchtap="reduce" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>-</button>
-          <view class='value'>{{item.num}}</view>
-          <button class='add' catchtap="addShop" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>+</button>
-          </view>
-         
-        </view>
-      </view>
-    </view>
+<view class="jingdian" wx:for="{{tourismlist}}" wx:key="{{toutismlist.id}}">
+  <view class="left">
+  <image src="{{item.avurl}}" mode=""/>
   </view>
-</view>
-
-<!-- 结算 -->
-<view class='bottom'>
-  <view class='all'>
-    <icon wx:if="{{selectAllStatus}}" bindtap="selectedAll" type="success" />
-    <icon wx:else type="circle" bindtap="selectedAll" />
-    <text class="check-all">全选</text>
-
+  <view class="right" bindtap="gototdetail">
+  <view>
+  <view class="jdname">{{item.name}}</view>
+  <view>地点：<van-tag>{{item.address}}</van-tag> </view>
+  <view>
+  {{item.info}}
   </view>
-
-  <view class='sum'>
-    <text class='he'>合计</text>
-    <text>{{totalPrice}}</text>
-    <text class='small'>不含运费</text>
   </view>
-
-  <view class='balance' wx:if='{{selectButton}}' bindtap="balance">结算（{{totalPrice}}）</view>
-  <view class='balance-gray balance' wx:else>结算（{{totalPrice}}）</view>
-
+  </view>
 </view>

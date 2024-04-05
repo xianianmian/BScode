@@ -1,0 +1,119 @@
+<!--index.wxml-->
+<view class="tips">
+  <tipx-item></tipx-item>
+</view>
+
+<view class="search">
+  <view class="input">
+    <input type="text" value="{{selectedName}}" bindinput="filterName" bindblur="claerfilterName" class="wxinput" placeholder="请输入商品名称" />
+    <view class="img">
+      <image src="../../db/tubiao/search.png" mode="" />
+    </view>
+  </view>
+
+</view>
+
+<view class="reset" wx:if="{{shopList.length == showList.length }}">筛选商品 </view>
+<view class="resetbtn" wx:else catchtap="resetshop"> 重置</view>
+<view class="filter">
+  <view class="address" bind:tap="showPopup1"> 地点
+    <image src="../../db/tubiao/xiangxia.png" mode="" />
+  </view>|
+  <view class="zhonglei" bind:tap="showPopup2"> 种类
+    <image src="../../db/tubiao/xiangxia.png" mode="" />
+  </view>
+</view>
+
+<van-popup show="{{ popup1}}" closeable position="bottom" custom-style="height: 40%" bind:close="closePopup1">
+  <view class="popuptitle">地址选择</view>
+  <view class="filterlist">
+    <view wx:for="{{addressList}}" wx:key="index" class="listcontent">
+      <view class="{{addressListIndex == index ? 'list-iteml' : 'list-itema'}}" data-index="{{index}}" catchtap="filterSelectAddress">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</van-popup>
+<van-popup show="{{ popup2}}" closeable position="bottom" custom-style="height: 40%" bind:close="closePopup2">
+  <view class="popuptitle">种类选择</view>
+  <view class="filterlist">
+    <view wx:for="{{zhongleiList}}" wx:key="index" class="listcontent">
+      <view class="{{zhongleiListIndex == index ? 'list-iteml' : 'list-itema'}}" data-index="{{index}}" catchtap="filterSelectZhonglei">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</van-popup>
+
+
+
+
+
+<!-- 购物车布局 -->
+<view class='wrapper'>
+
+  <view wx:for='{{showList}}' wx:key='{{item.id}}' class="list " data-index='{{index}}'>
+    <view class='item' bindtap="gotoproductdetail" data-index='{{item.id}}'>
+      <view class='circle'>
+        <icon wx:if='{{item.selected}}' catchtap="selectedList" data-index='{{index}}' type='success'></icon>
+        <icon wx:else type='circle' catchtap="selectedList" data-index='{{index}}' color="#999"></icon>
+      </view>
+
+      <view class='img'>
+        <image src='{{item.tavartar}}'></image>
+      </view>
+      <view class='content'>
+        <view class="shang">
+          <view>
+            {{item.tname}}
+          </view>
+          <view class="tlove" catchtap="changetlove" data-index="{{item.id}}">
+            <image src="{{item.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
+          </view>
+
+        </view>
+        <view class="tags">
+          <view>
+            <van-tag color="#B1C941">{{item.tcity}}</van-tag>
+          </view>
+          <view>
+            <van-tag color="#7232dd">{{item.tzhonglei}}</van-tag>
+          </view>
+
+        </view>
+        <view class="xia">
+          <view class="price"><text> ￥{{item.tprice}}</text></view>
+          <!-- <view class="stars-box">
+              <view wx:for="{{item.starlist}}" wx:key="index" wx:for-item="item1">
+                <image wx:for-index="index" src="{{item1}}" class="star" data-index="{{index}}" catchtap="scoring" data-id="{{item.id}}">
+                </image>
+              </view>
+          </view> -->
+          <view class="btns">
+            <view class='reduce' catchtap="reduce" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>-</view>
+            <view class='value'>{{item.num}}</view>
+            <view class='add' catchtap="addShop" data-index='{{index}}' data-id='{{item.id}}' data-num='{{item.num}}'>+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 结算 -->
+<view class='bottom'>
+  <view class='all'>
+    <icon wx:if="{{selectAllStatus}}" bindtap="selectedAll" type="success" />
+    <icon wx:else type="circle" bindtap="selectedAll" />
+    <text class="check-all">全选</text>
+
+  </view>
+  <view wx:if="{{ totalPrice > 0 }}" class="suml" catchtap="jiesuan">
+    结算：共 <text>{{ totalPrice }}</text>
+  </view>
+  <view wx:else class="suma" >
+    结算：共 <text>{{ totalPrice }}</text>
+  </view>
+
+
+</view>
