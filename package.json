@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.11.4",
-    "antd-mini": "^2.28.1"
+    "@vant/weapp": "^1.11.4"
   }
 }
