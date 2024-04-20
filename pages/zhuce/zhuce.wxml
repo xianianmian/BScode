@@ -1,7 +1,7 @@
 <view data-weui-theme="{{theme}}">
-  <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
     <image class="avatar" src="{{avatarUrl}}"></image>
-  </button>  -->
+  </button> 
   <form catchsubmit="formSubmit">
     <view class="row">
       <view class="text1">昵称：</view>
@@ -13,7 +13,7 @@
       <input  password type="text" class="weui-input" placeholder="请输入密码" bind:change="onInputChangePs" />
       
     </view>
-    <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">提交</button>
+    <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">注册</button>
     
   </form>
 </view>

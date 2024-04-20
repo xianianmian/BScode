@@ -1,7 +1,18 @@
 <!--pages/zhangdanlist/zhangdanlist.wxml-->
 <view class="page">
-  <view>我的账单</view>
+  <view class="headtilte">我的账单</view>
 
+  <view class="menu">
+    <view class="menulist">
+      <view wx:for="{{menuList}}" wx:key="index" wx:for-item="item">
+        <view data-index="{{index}}" bindtap="itemTap" class="{{index == activeIndex ? 'acive-menu-item' : 'menu-item '}}">{{item}} </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class="fenlei">
+    <view class="all">全部订单</view>
+  </view> -->
   <view class="zhangdancontent">
     <view class="zhangdanList" wx:for="{{AllZhangdanList}}" wx:key="index1" wx:for-item="item1" wx:for-index="index1">
       <view class="zhangdan-item">

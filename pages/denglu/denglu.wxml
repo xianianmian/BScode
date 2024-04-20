@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <!-- 登录页头部 -->
-<view class="head" bindtap="gotoqitadenglu">
+<view class="head" bindtap="changeShowModle">
 	<view class="{{!showxingxi ? 'username': 'ausername'}}">
 		{{!showxingxi ? '未登陆': nickName }}
 	</view>
@@ -9,20 +9,34 @@
 	</view>
 </view>
 
+<van-popup show="{{ showModle }}" bind:close="onClose">
+<view class="modleContent">
+  <view class="btns">
+  <van-button round block type="primary" bindtap="gotoqitadenglu">点击登录</van-button>
+</view>
+<view class="btns">
+  <van-button round block type="warning" bindtap="gotozhuce">点击注册</van-button>
+</view>
+</view>
+
+
+</van-popup>
+
+
 <view class="zhangdan">
 	<view class="ztitle">
 		我的订单
 	</view>
 	<view class="menulist">
-		<view class="menu-item" catchtap="gotozhangdan" >
+		<view class="menu-item" catchtap="gotozhangdan" data-index="0">
       <image src="../../db/tubiao/alldingdan.png" mode=""/>
       <view>全部订单</view>
     </view>
-		<view class="menu-item">
+		<view class="menu-item"  catchtap="gotozhangdan" data-index="1">
       <image src="../../db/tubiao/daifukuan.png" mode=""/>
       <view>待付款</view>
     </view>
-		<view class="menu-item">
+		<view class="menu-item"  catchtap="gotozhangdan" data-index="2">
       <image src="../../db/tubiao/daipingjia.png" mode=""/>
       <view>待评价</view>
     </view>

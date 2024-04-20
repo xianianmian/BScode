@@ -3,57 +3,78 @@ const defoultavt = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd
 
 Page({
   data: {
-    avatarUrl:defoultavt,
-    nickName:'',
-    passWord:'',
-    showxingxi:false,
+    showModle: false,
+    avatarUrl: defoultavt,
+    nickName: '',
+    passWord: '',
+    showxingxi: false,
     refreshCount: 0,
-    itemsCustom:[
-      {
-        title:'全部订单',
-        icon:'../../db/tubiao/shezhil.png',
-        tag:'1'
+    itemsCustom: [{
+        title: '全部订单',
+        icon: '../../db/tubiao/shezhil.png',
+        tag: '1'
       },
       {
-        title:'待付款',
-        icon:'../../db/tubiao/daifukuan.png',
-        tag:'2'
+        title: '待付款',
+        icon: '../../db/tubiao/daifukuan.png',
+        tag: '2'
       },
       {
-        title:'待评价',
-        icon:'../../db/tubiao/daipingjia.png',
-        tag:'3'
+        title: '待评价',
+        icon: '../../db/tubiao/daipingjia.png',
+        tag: '3'
       },
     ],
   },
-  gotoqitadenglu(e){
-         wx.navigateTo({
-      url: '../qitadenglu/qitadenglu',
+  changeShowModle() {
+    this.setData({
+      showModle: true
     })
- 
   },
-  gotozhangdan(){
+  onClose() {
+    this.setData({
+      showModle: false
+    })
+  },
+  gotoqitadenglu(e) {
     wx.navigateTo({
-      url: '../zhangdanlist/zhangdanlist',
+      url: '../qitadenglu/qitadenglu',
+      success: () =>{
+        this.onClose()
+      }
     })
   },
-  handleTapItem(){
+  gotozhuce(e) {
+    wx.navigateTo({
+      url: '/pages/zhuce/zhuce',
+      success: () =>{
+        this.onClose()
+      }
+    })
+  },
+  gotozhangdan(e) {
+    const index = e.currentTarget.dataset.index;
+    wx.navigateTo({
+      url: `../zhangdanlist/zhangdanlist?activeIndex=${index}`,
+    })
+  },
+  handleTapItem() {
     this.gotozhangdan()
   },
-  logout(){
+  logout() {
     this.setData({
-      showxingxi:false,
-      avatarUrl:defoultavt
+      showxingxi: false,
+      avatarUrl: defoultavt
     })
   },
-  onLoad(options){
+  onLoad(options) {
     console.log(app.globalData);
-    if(app.globalData.userInfo.avatarUrl!=="" && options.refresh === 'true'){
+    if (app.globalData.userInfo.avatarUrl !== "" && options.refresh === 'true') {
       this.setData({
-        showxingxi:true,
-        avatarUrl:app.globalData.userInfo.avatarUrl,
-        nickName:app.globalData.userInfo.nickName,
-        passWord:app.globalData.userInfo.passWord,
+        showxingxi: true,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        nickName: app.globalData.userInfo.nickName,
+        passWord: app.globalData.userInfo.passWord,
       })
     }
   },
@@ -61,23 +82,17 @@ Page({
     this.setData({
       refreshCount: this.data.refreshCount + 1
     });
-    
-    if (this.data.refreshCount >= 2 && app.globalData.userInfo.avatarUrl!=="") {
+    console.log(app.globalData);
+    if (this.data.refreshCount >= 2 && app.globalData.userInfo.avatarUrl !== "") {
       // 执行刷新逻辑
-      console.log('页面A执行刷新两次');
-      console.log(app.globalData);
       this.setData({
-        showxingxi:true,
-        avatarUrl:app.globalData.userInfo.avatarUrl,
-        nickName:app.globalData.userInfo.nickName,
-        passWord:app.globalData.userInfo.passWord,
+        showxingxi: true,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        nickName: app.globalData.userInfo.nickName,
+        passWord: app.globalData.userInfo.passWord,
       })
-      // // 刷新完成后重置计数器
-      // this.setData({
-      //   refreshCount: 0
-      // });
     }
   }
-  
+
 
 })

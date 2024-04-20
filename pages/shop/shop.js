@@ -140,12 +140,14 @@ Page({
 
   getShop() {
     wx.request({
-      url: 'http://localhost:3002/api3/goods-list',
+      // url: 'http://localhost:3002/getshopdata/goods-list',
+      url: 'http://127.0.0.1:8081/hx/bsproducts/bsget',
       success:res=>{
-        const goodsdata = res.data;
+        const goodsdata = res.data.data;
         const updatedGoodsData = goodsdata.map(x => {
           return {
             ...x,
+            tlove: x.tlove === 1 ? true : false,
             starlist: ["../../db/tubiao/xingl.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png"]
           };
         });

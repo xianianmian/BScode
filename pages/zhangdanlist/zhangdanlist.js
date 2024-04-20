@@ -1,3 +1,5 @@
+
+
 // pages/zhangdanlist/zhangdanlist.js
 Page({
 
@@ -5,27 +7,71 @@ Page({
    * 页面的初始数据
    */
   data: {
-    AllZhangdanList: []
+    AllZhangdanList: [],
+    AllZhangdanList2:[],
+    activeIndex: 0,
+    menuList: ['全部', '待付款', '未付款']
   },
+  itemTap(e) {
+    const index = e.currentTarget.dataset.index;
+    
+    if(index == 0){
+      this.setData({
+        AllZhangdanList:this.data.AllZhangdanList2
+      })
+    }
+    if(index == 1){
+      const arrdata = this.data.AllZhangdanList2.filter(x => !x.ifzhifu);
+      this.setData({
+        AllZhangdanList: arrdata
+      })
+    }
+    if(index == 2){
+      const arrdata = this.data.AllZhangdanList2.filter(x => !x.ifpingjia);
+      this.setData({
+        AllZhangdanList: arrdata
+      })
+    }
 
-  getTotalPrice(arr){
-    return arr.reduce(( a ,b) => a + (b.tprice * b.num),0)
+    this.setData({
+      activeIndex: index
+    })
+  },
+  getTotalPrice(arr) {
+    return arr.reduce((a, b) => a + (b.tprice * b.num), 0)
   },
   gotozhiping(e) {
     let info = e.currentTarget.dataset.info;
-    let { id, buyTime, ifpingjia, ifzhifu } = info;
+    let {
+      id,
+      buyTime,
+      ifpingjia,
+      ifzhifu
+    } = info;
     wx.navigateTo({
       url: `../zhiping/zhiping?id=${id}&buyTime=${buyTime}&ifpingjia=${ifpingjia}&ifzhifu=${ifzhifu}`,
     });
   },
   onLoad(options) {
+    const activeIndex = options.activeIndex
     let storagedataList = wx.getStorageSync('AllZhangdanList') || [];
     let AllZhangdanList = []
-    storagedataList.forEach((item,index) =>{
-      AllZhangdanList.push(Object.assign(item ,{ totalPrice : this.getTotalPrice(item.zhangdanItem)}))
+    storagedataList.forEach((item, index) => {
+      if (item.zhangdanItem.every(x => x.ifpingjia)) {
+        item.ifpingjia = true
+      }
+      if (item.zhangdanItem.every(x => x.ifzhifu)) {
+        item.ifzhifu = true
+      }
+      AllZhangdanList.push(Object.assign(item, {
+        totalPrice: this.getTotalPrice(item.zhangdanItem)
+      }))
     })
+    wx.setStorageSync('AllZhangdanList', storagedataList)
     this.setData({
       AllZhangdanList,
+      AllZhangdanList2: AllZhangdanList,
+      activeIndex,
     })
   },
 
@@ -40,7 +86,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // let storagedataList = wx.getStorageSync('AllZhangdanList') || [];
+    // let AllZhangdanList = []
+    // storagedataList.forEach((item,index) =>{
+    //   if(item.zhangdanItem.every(x => x.ifpingjia)){
+    //     item.ifpingjia = true
+    //   }
+    //   if(item.zhangdanItem.every(x => x.ifzhifu)){
+    //     item.ifzhifu = true
+    //   }
 
+
+    //   AllZhangdanList.push(Object.assign(item ,{ totalPrice : this.getTotalPrice(item.zhangdanItem)}))
+    // })
+    // this.setData({
+    //   AllZhangdanList,
+    // })
   },
 
   /**

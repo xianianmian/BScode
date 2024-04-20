@@ -3,7 +3,26 @@
 .page{
 	color: gray;
 }
-
+.headtilte{
+	padding: 10px;
+	font-size: 24px;
+	text-align: center;
+}
+.menu .menulist{
+	display: flex;
+}
+.menulist view{
+	flex:1;
+}
+.menulist .menu-item , .menulist .acive-menu-item{
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.menulist .acive-menu-item{
+	color: red;
+}
 .zhangdancontent{
 	margin:5px;
 	font-size: 16px;

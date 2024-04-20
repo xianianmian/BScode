@@ -18,9 +18,17 @@ Page({
     })
   },
   getUserInfo(event) {
-    this.setData({
+    wx.showToast({
+      title: '评价完成',
+      icon: 'success',
+      duration: 1000,
+      success: res => {
+            this.setData({
       ifpingjia:true
     })
+      }
+    })
+
   },
 
   onClose() {
@@ -57,9 +65,17 @@ Page({
     });
   },
   fukuan(){
-    this.setData({
-      ifzhifu:true
+    wx.showToast({
+      title: '付款成功',
+      icon: 'success',
+      duration: 2000,
+      success: res =>{
+        this.setData({
+          ifzhifu:true
+        })
+      }
     })
+
   },
   fanhui(){
     let storagedataList = wx.getStorageSync('AllZhangdanList') || [];
@@ -89,7 +105,7 @@ Page({
     let ifzhifu = options.ifzhifu;
     
     wx.request({
-      url: `http://localhost:3002/api3/goods-list/${idx}`,
+      url: `http://localhost:3002/getshopdata/goods-list/${idx}`,
       success: res => {
         const goodsData = res.data;
         const txingNum = res.data.txing;
@@ -107,6 +123,7 @@ Page({
   },
   onShow() {
     this.scoring();
+    console.log(this.data.AllZhangdanList);
   },
   /**
    * 生命周期函数--监听页面加载

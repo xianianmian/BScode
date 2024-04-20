@@ -133,10 +133,12 @@ Page({
       id = '1'
     } = query;
     wx.request({
-      url: `http://localhost:3002/api3/goods-list/${id}`,
+      // url: `http://localhost:3002/getshopdata/goods-list/${id}`,
+      url: `http://127.0.0.1:8081/hx/bsproducts/bsgetone?id=${id}`,
       success: res => {
-        const goodsData = res.data;
-        const txingNum = res.data.txing;
+        let goodsData = res.data[0];
+        goodsData.tlove = goodsData.tlove == 1 ? true : false
+        const txingNum = res.data[0].txing;
         this.initXingList(txingNum);
         this.setData({
           goodsData,

@@ -11,7 +11,8 @@
     "pages/zhangdanlist/zhangdanlist",
     "pages/tips/tips",
     "pages/shop/shop",
-    "pages/zhiping/zhiping"
+    "pages/zhiping/zhiping",
+    "pages/zhuce/zhuce"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -39,12 +40,6 @@
         "text": "我的",
         "iconPath": "./db/tubiao/wodea.png",
         "selectedIconPath": "./db/tubiao/wodel.png"
-      },
-      {
-        "pagePath": "pages/zhangdanlist/zhangdanlist",
-        "text": "账单",
-        "iconPath": "./db/tubiao/shouyea.png",
-        "selectedIconPath": "./db/tubiao/shouyel.png"
       }
     ]
   },
@@ -63,7 +58,6 @@
     }
   },
   "requiredPrivateInfos": [
-    "chooseLocation",
     "getFuzzyLocation"
   ],
   "usingComponents": {
@@ -77,6 +71,7 @@
     "van-card": "@vant/weapp/card/index",
     "van-picker": "@vant/weapp/picker/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }

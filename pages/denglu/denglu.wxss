@@ -25,6 +25,19 @@ image{
     border-radius: 50%;
 }
 
+.modleContent{
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modleContent .btns{
+  width: 100%;
+  padding: 4px 0;
+}
 
 .zhangdan{
   background-color: #ffffff;

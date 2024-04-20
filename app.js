@@ -18,6 +18,7 @@ App({
       avatarUrl:'',
       nickName:'',
       passWord:'',
-    }
+    },
+    token:''
   }
 })
