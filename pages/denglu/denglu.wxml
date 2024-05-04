@@ -1,5 +1,5 @@
-<!--index.wxml-->
-<!-- 登录页头部 -->
+<!--我的页面-->
+<!-- 我的页头部 -->
 <view class="head" bindtap="changeShowModle">
 	<view class="{{!showxingxi ? 'username': 'ausername'}}">
 		{{!showxingxi ? '未登陆': nickName }}
@@ -42,10 +42,10 @@
     </view>
 	</view>
 </view> 
-<!-- 登录页其它内容 -->
+<!-- 我的页其它内容 -->
  <view class="qita">
-	<view class="acard" >
-		<view class="left">
+	<view class="acard"  bindtap="openSetting">
+		<view class="left" >
 		<image class="iconimg" src="../../db/tubiao/shezhi.png" mode=""/>
 		设置
 		</view>
@@ -69,48 +69,3 @@
 	</view>
 </view>
 
-<!-- <view class="xia">
-    <view class="lists">
-      <ant-list-item
-        class="alist"
-
-        image="../../db/tubiao/yinsi.png"
-        arrow="right"
-        bindtap="handleTap"
-        data-info="隐私政策"
-      >
-        隐私政策
-      </ant-list-item>
-      <ant-list-item
-        image="../../db/tubiao/shezhil.png"
-        arrow="right"
-        bindtap="handleTap"
-        data-info="设置"
-      >
-        设置
-      </ant-list-item>
-      <ant-list-item
-        image="../../db/tubiao/logout.png"
-        arrow="right"
-        bindtap="logout"
-        data-info="退出"
-      >
-        退出
-      </ant-list-item>
-			<ant-list-item
-      disabled
-      image="PayCircleOutline"
-      arrow="right"
-      data-info="总资产">
-      总资产
-    </ant-list-item>
-		    <ant-list-item
-      image="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*XMCgSYx3f50AAAAAAAAAAABkARQnAQ"
-      arrow="right"
-      bind:tap="handleTap"
-      data-info="图片">
-      图片
-    </ant-list-item>
-  </view>
-  </view> -->
-	<!-- <image src="../../db/tubiao/logout.png" mode=""/> -->

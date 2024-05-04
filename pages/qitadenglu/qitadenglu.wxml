@@ -1,7 +1,6 @@
+<!-- 登录页 -->
+
 <view data-weui-theme="{{theme}}">
-  <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{avatarUrl}}"></image>
-  </button>  -->
   <form catchsubmit="formSubmit">
     <view class="row">
       <view class="text1">昵称：</view>

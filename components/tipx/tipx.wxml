@@ -1,6 +1,6 @@
-<view class="xuanfu" catchtap="handleShowBasic" data-position="top" style="position: fixed; z-index:4;left:{{posX}}px;top:{{posY}}px" catchtouchmove="touchMove" catchtouchstart="touchStart" catchtouchend="touchEnd">
+<view class="xuanfu" catchtap="handleShowBasic" data-position="top" style="position: fixed; z-index:4;left:{{posX}}px;top:{{posY}}px" catchtouchmove="touchMove" catchtouchstart="touchStart" catchtouchend="touchEnd" >
     <view>
-        <view class="stick">
+        <view class="stick" >
             <view>
                 <image mode="scaleToFill" src="../../db/tubiao/xiaotip.png" style="width:45px;height:45px;"></image>
             </view>

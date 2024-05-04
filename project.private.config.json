@@ -50,6 +50,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/setting/setting",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/tips/tips",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

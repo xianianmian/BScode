@@ -2,163 +2,179 @@
   "data": [
     {
       "userid": 1,
-      "goodsid": 101,
+      "goodsid": 2,
       "isfavorite": "true",
-      "goodsrate": 5,
+      "goodsrate": 1,
       "ztime": "2024-04-20",
-      "zamount": 50
+      "zamount": 1
     },
     {
       "userid": 2,
-      "goodsid": 102,
+      "goodsid": 3,
       "isfavorite": "true",
-      "goodsrate": 4,
+      "goodsrate": 1,
       "ztime": "2024-04-20",
-      "zamount": 30
+      "zamount": 3
     },
     {
       "userid": 3,
-      "goodsid": 103,
+      "goodsid": 1,
       "isfavorite": "false",
       "goodsrate": 3,
       "ztime": "2024-04-21",
-      "zamount": 25
+      "zamount": 2
     },
     {
       "userid": 1,
-      "goodsid": 104,
+      "goodsid": 4,
       "isfavorite": "true",
       "goodsrate": 5,
       "ztime": "2024-04-21",
-      "zamount": 60
+      "zamount": 3
     },
     {
       "userid": 2,
-      "goodsid": 105,
+      "goodsid": 3,
       "isfavorite": "false",
       "goodsrate": 4,
       "ztime": "2024-04-21",
-      "zamount": 40
+      "zamount": 4
     },
     {
       "userid": 3,
-      "goodsid": 106,
+      "goodsid": 6,
       "isfavorite": "true",
-      "goodsrate": 3,
+      "goodsrate": 2,
       "ztime": "2024-04-22",
-      "zamount": 35
+      "zamount": 2
     },
     {
       "userid": 1,
-      "goodsid": 107,
+      "goodsid": 1,
       "isfavorite": "false",
       "goodsrate": 5,
       "ztime": "2024-04-22",
-      "zamount": 70
+      "zamount": 1
     },
     {
       "userid": 2,
-      "goodsid": 108,
+      "goodsid": 2,
       "isfavorite": "true",
-      "goodsrate": 4,
+      "goodsrate": 1,
       "ztime": "2024-04-22",
-      "zamount": 45
+      "zamount": 1
     },
     {
       "userid": 3,
-      "goodsid": 109,
+      "goodsid": 3,
       "isfavorite": "false",
       "goodsrate": 3,
       "ztime": "2024-04-23",
-      "zamount": 30
+      "zamount": 1
     },
     {
       "userid": 1,
-      "goodsid": 110,
+      "goodsid": 4,
       "isfavorite": "true",
       "goodsrate": 5,
       "ztime": "2024-04-23",
-      "zamount": 80
+      "zamount": 2
     },
     {
       "userid": 2,
-      "goodsid": 111,
+      "goodsid": 2,
       "isfavorite": "false",
       "goodsrate": 4,
       "ztime": "2024-04-23",
-      "zamount": 55
+      "zamount": 5
     },
     {
       "userid": 3,
-      "goodsid": 112,
+      "goodsid": 6,
       "isfavorite": "true",
       "goodsrate": 3,
       "ztime": "2024-04-24",
-      "zamount": 40
+      "zamount": 4
     },
     {
       "userid": 1,
-      "goodsid": 113,
+      "goodsid": 1,
       "isfavorite": "false",
-      "goodsrate": 5,
+      "goodsrate": 1,
       "ztime": "2024-04-24",
-      "zamount": 90
+      "zamount": 2
     },
     {
       "userid": 2,
-      "goodsid": 114,
+      "goodsid": 2,
       "isfavorite": "true",
-      "goodsrate": 4,
+      "goodsrate": 1,
       "ztime": "2024-04-24",
-      "zamount": 60
+      "zamount": 2
     },
     {
       "userid": 3,
-      "goodsid": 115,
+      "goodsid": 3,
       "isfavorite": "false",
       "goodsrate": 3,
       "ztime": "2024-04-25",
-      "zamount": 45
+      "zamount": 5
     },
     {
       "userid": 1,
-      "goodsid": 116,
+      "goodsid": 4,
       "isfavorite": "true",
-      "goodsrate": 5,
+      "goodsrate": 1,
       "ztime": "2024-04-25",
-      "zamount": 100
+      "zamount": 4
     },
     {
       "userid": 2,
-      "goodsid": 117,
+      "goodsid": 5,
       "isfavorite": "false",
       "goodsrate": 4,
       "ztime": "2024-04-25",
-      "zamount": 70
+      "zamount": 3
     },
     {
       "userid": 3,
-      "goodsid": 118,
+      "goodsid": 6,
       "isfavorite": "true",
-      "goodsrate": 3,
+      "goodsrate": 2,
       "ztime": "2024-04-26",
-      "zamount": 50
+      "zamount": 2
     },
     {
       "userid": 1,
-      "goodsid": 119,
+      "goodsid": 1,
       "isfavorite": "false",
       "goodsrate": 5,
       "ztime": "2024-04-26",
-      "zamount": 110
+      "zamount": 1
     },
     {
       "userid": 2,
-      "goodsid": 120,
+      "goodsid": 2,
       "isfavorite": "true",
       "goodsrate": 4,
       "ztime": "2024-04-26",
-      "zamount": 80
+      "zamount": 1
+    },
+    {
+      "userid": 4,
+      "goodsid": 8,
+      "isfavorite": "true",
+      "goodsrate": 5,
+      "ztime": "2024-04-26",
+      "zamount": 1
+    },
+    {
+      "userid": 4,
+      "goodsid": 8,
+      "isfavorite": "false",
+      "goodsrate": 3,
+      "ztime": "2024-04-26",
+      "zamount": 1
     }
   ]
 }

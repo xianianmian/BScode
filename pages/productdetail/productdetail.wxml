@@ -1,4 +1,4 @@
-<!--pages/productdetail/productdetail.wxml-->
+<!--商城商品详情页-->
 <!-- 商品名称 -->
 <view class="detail-container">
   <view class="head">

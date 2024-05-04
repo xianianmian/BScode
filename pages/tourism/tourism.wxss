@@ -1,5 +1,45 @@
 /* pages/tourism/tourism.wxss */
-.jingdian image{
-	height: 300rpx;
-	width: 300rpx;
+.imgtitle{
+	height: 60px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.imgtitle image{
+	height: 100%;
+
+}
+.jingdian{
+  margin:10px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  box-shadow: 1px 1rpx rgb(220, 221, 215);
+}
+.jingdian .left image {
+  height: 240rpx;
+  width: 240rpx;
+  border-radius: 10px;
+}
+.jingdian .right{
+  padding-left: 10px;
+  width: 100%;
+}
+.jingdian .jdname{
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+.jingdian .jddesc{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical; 
+    color: gray;
+    font-size: 18px;
+    text-indent: 20px;
 }

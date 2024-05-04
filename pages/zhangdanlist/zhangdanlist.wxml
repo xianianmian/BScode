@@ -1,4 +1,4 @@
-<!--pages/zhangdanlist/zhangdanlist.wxml-->
+<!--账单页-->
 <view class="page">
   <view class="headtilte">我的账单</view>
 
@@ -10,9 +10,6 @@
     </view>
   </view>
 
-  <!-- <view class="fenlei">
-    <view class="all">全部订单</view>
-  </view> -->
   <view class="zhangdancontent">
     <view class="zhangdanList" wx:for="{{AllZhangdanList}}" wx:key="index1" wx:for-item="item1" wx:for-index="index1">
       <view class="zhangdan-item">
@@ -24,7 +21,7 @@
             <view> 购买商品：{{item2.tname}} X{{item2.num}}</view>
           </view>
           <view class="rate" wx:if="{{item1.ifpingjia}}">
-            <view>评价：{{item2.txing}} 星</view>
+            <view>评价：<text style="color: red;font-size: 24px;">{{item2.txing}}</text>星  </view>
             <view>
               <view class="tlove">
                 <image src="{{item2.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
@@ -33,7 +30,7 @@
           </view>
         </view>
         <view class="totalPrice">
-          总价：{{item1.totalPrice}}￥
+          总价：<text style="color: red;">{{item1.totalPrice}}￥</text>
         </view>
         <view class="zhuangtai">
           <view class="zhifu" wx:if="{{item1.ifzhifu}}">

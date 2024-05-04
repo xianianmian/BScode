@@ -30,10 +30,10 @@ Page({
     selectedName: '',
     popup1: false,
     popup2: false,
-    addressList: ['衡阳','耒阳','南岳'],
+    addressList: ['衡阳','耒阳','南岳','常宁','祁东','衡东'],
     addressListIndex: 0,
     selectedcity: '衡阳',
-    zhongleiList: ['熟食', '非熟食'],
+    zhongleiList: ['熟食', '非熟食','其它'],
     zhongleiListIndex: 0,
     selectedzhonglei: '熟食'
   },
@@ -140,7 +140,6 @@ Page({
 
   getShop() {
     wx.request({
-      // url: 'http://localhost:3002/getshopdata/goods-list',
       url: 'http://127.0.0.1:8081/hx/bsproducts/bsget',
       success:res=>{
         const goodsdata = res.data.data;
@@ -265,7 +264,6 @@ Page({
       icon: 'success',
       duration: 2000,
       success:res=>{
-        //上传数据库
         let zhangdan = this.data.showList.filter(x => x.selected);
         let zhangdanList = zhangdan.map(item => ({
           ...item,

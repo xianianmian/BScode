@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--商品首页-->
 <view class="tips">
   <tipx-item></tipx-item>
 </view>
@@ -44,10 +44,6 @@
     </view>
   </view>
 </van-popup>
-
-
-
-
 
 <!-- 购物车布局 -->
 <view class='wrapper'>

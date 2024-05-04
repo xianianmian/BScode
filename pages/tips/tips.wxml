@@ -1,10 +1,11 @@
-<!--pages/tips/tips.wxml-->
-<view>
-<text>这是提示页面</text>
-<view>晴天</view>
+<!--小提示页-->
+<view class="tip-page">
+<view class="tiptitle">小提示</view>
+<view class="time"> 
+现在的时间是是：
+<view >{{ todayTime}}</view>
+</view>
+<view>天气</view>
 <view>交通情况：好</view>
 <view>攻略推荐</view>
-<view>
-啊八八八八吧
-</view>
 </view>

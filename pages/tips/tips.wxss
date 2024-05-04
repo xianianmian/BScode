@@ -1,1 +1,18 @@
 /* pages/tips/tips.wxss */
+.tip-page{
+	padding:8px;
+}
+.tiptitle{
+	font-size: 30px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+.time{
+	text-align: center;
+	font-size: 20px;
+}
+.time view{
+	color: red;
+	font-size: 24px;
+}

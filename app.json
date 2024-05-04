@@ -12,7 +12,8 @@
     "pages/tips/tips",
     "pages/shop/shop",
     "pages/zhiping/zhiping",
-    "pages/zhuce/zhuce"
+    "pages/zhuce/zhuce",
+    "pages/setting/setting"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -31,7 +32,7 @@
       },
       {
         "pagePath": "pages/shop/shop",
-        "text": "商城",
+        "text": "特产",
         "iconPath": "./db/tubiao/shangchenga.png",
         "selectedIconPath": "./db/tubiao/shangchengl.png"
       },

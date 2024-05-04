@@ -67,6 +67,11 @@ Page({
       avatarUrl: defoultavt
     })
   },
+  openSetting(){
+    wx.navigateTo({
+      url: '../setting/setting',
+    })
+  },
   onLoad(options) {
     console.log(app.globalData);
     if (app.globalData.userInfo.avatarUrl !== "" && options.refresh === 'true') {
@@ -82,7 +87,6 @@ Page({
     this.setData({
       refreshCount: this.data.refreshCount + 1
     });
-    console.log(app.globalData);
     if (this.data.refreshCount >= 2 && app.globalData.userInfo.avatarUrl !== "") {
       // 执行刷新逻辑
       this.setData({

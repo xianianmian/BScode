@@ -1,0 +1,70 @@
+<!--设置-->
+<view class="setting-page">
+<view style="text-align: center; font-size: 24px;">一些设置</view>
+<view class="btn-item">
+	<button open-type="openSetting" class="address-setting"  bindopensetting="callback">位置相关设置页</button>
+</view>
+<view class="btn-item">
+	<button bindtap="changeShowModle" class="userinfo-setting"  >个人信息设置</button>
+</view>
+<view class="btn-item">
+	<button open-type="openSetting" class="recommend-setting" >推荐设置</button>
+</view>
+
+<van-popup show="{{ showModle }}" bind:close="onClose">
+<view class="modleContent">
+  <view class="btns">
+  <van-button round block type="primary" bindtap="getUserinfo">查看个人信息</van-button>
+</view>
+<view class="btns">
+  <van-button round block type="warning" bindtap="changeUserinfo">修改个人信息 </van-button>
+</view>
+</view>
+
+</van-popup>
+
+<van-dialog
+  use-slot
+  title="用户信息"
+  show="{{ userInfoShow }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  bind:close="useronClose"
+  bind:getuserinfo="getUserInfo"
+>
+<view>
+  <image src="{{userInfo.avatarUrl}}" />
+</view>
+<view style="text-align: center;font-size: 20px;">账号名称：{{userInfo.nickName}}</view>
+</van-dialog>
+
+<van-dialog
+  use-slot
+  title="修改个人信息"
+  show="{{ changeUserInfoShow }}"
+  show-cancel-button
+  confirm-button-open-type="confirmChangeUserInfo"
+  bind:close="changeUseronClose"
+  bind:getuserinfo="confirmChangeUserInfo"
+>
+<view>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+  </button> 
+  <form catchsubmit="formSubmit">
+    <view class="row">
+      <view class="text1">昵称：</view>
+      <input type="nickname" class="weui-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{userInfo.nickName}}" />
+      
+    </view>
+    <view class="row">
+      <view class="text1">密码：</view>
+      <input  password type="text" class="weui-input" placeholder="请输入密码" bind:change="onInputChangePs" value="{{userInfo.password}}" />
+      
+    </view>
+    <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">修改</button>
+    
+  </form>
+</view>
+</van-dialog>
+</view>

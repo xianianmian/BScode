@@ -1,3 +1,4 @@
+<!-- 用户注册页 -->
 <view data-weui-theme="{{theme}}">
   <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
     <image class="avatar" src="{{avatarUrl}}"></image>

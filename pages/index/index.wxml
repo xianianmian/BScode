@@ -1,4 +1,9 @@
-<!--pages/tourism/tourism.wxml-->
+<!--首页-->
+
+<view class="tips" >
+  <tipx-item></tipx-item>
+</view>
+
 <view class='banner'>
   <swiper autoplay='true' interval='3000' bindchange='swiperChange' circular='true'>
     <swiper-item wx:for='{{bannerArr}}' wx:key='index'>
@@ -9,23 +14,46 @@
     </swiper-item>
   </swiper>
 </view>
-<image src="https://img.alicdn.com/imgextra/i4/867636007/O1CN01TUTepL1uFFtM2AMwJ_!!867636007.jpg" mode=""/>
+
 
 <view class="title">
-<image src="../../db/title/rmjd.png" mode=""/>
+  <image src="../../db/title/rmjd.png" mode="" />
 </view>
 
-<view class="jingdian" wx:for="{{tourismlist}}" wx:key="{{toutismlist.id}}">
+<view class="jingdian" wx:for="{{tourismList}}" wx:key="{{item.id}}">
   <view class="left">
-  <image src="{{item.avurl}}" mode=""/>
+    <image src="{{item.imgArr[0]}}" mode="" />
   </view>
-  <view class="right" bindtap="gototdetail">
-  <view>
-  <view class="jdname">{{item.name}}</view>
-  <view>地点：<van-tag>{{item.address}}</van-tag> </view>
-  <view>
-  {{item.info}}
+  <view class="right" bindtap="gototdetail" data-index="{{item.id}}">
+    <view>
+      <view class="jdname">{{item.name}}</view>
+      <view style="text-align: center;">地点：<van-tag type="success"  size="large">{{item.address}}</van-tag>
+      </view>
+      <view class="jddesc">
+        {{item.info[0]}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class="move" bindtap="gototourismdetail">
+  更多景点>>>
+</view>
+
+<view class="title">
+  <image src="../../db/title/rmtc.png" mode="" />
+</view>
+
+<view class="shangping" wx:for="{{goodsdata}}" wx:key="{{item.id}}">
+  <view class="img" style="text-align: center;" bindtap="gotoShop">
+  <image src="{{item.tavartar}}" mode=""/>
+  </view>
+  <view class="info">
+    <view class="imgTitle">
+  {{item.tname}}
+  </view>
+  <view class="price">
+    {{item.tprice}}元
   </view>
   </view>
-  </view>
+
 </view>
