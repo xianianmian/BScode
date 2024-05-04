@@ -54,7 +54,7 @@
   <form catchsubmit="formSubmit">
     <view class="row">
       <view class="text1">昵称：</view>
-      <input type="nickname" class="weui-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{userInfo.nickName}}" />
+      <input type="nickname" class="weui-input" placeholder="请输入昵称" bind:change="onInputChange" />
       
     </view>
     <view class="row">

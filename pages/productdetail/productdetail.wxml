@@ -40,6 +40,6 @@
   <view class='shop-img'>
     <image src='../../images/购物车_爱给网_aigei_com.png' bindtap="goShop"></image>
   </view>
-  <view class='go-shop' bindtap='addShopCar'>加入购物车</view>
+  <!-- <view class='go-shop' bindtap='addShopCar'>加入购物车</view> -->
   <view class='buy-now' catchtap="jiesuan">直接购买</view>
 </view>

@@ -1,6 +1,7 @@
 // pages/productdetail/productdetail.js
 const timeUtil = require('../../utils/times.js');
-
+const otherfun = require('../../utils/otherfun.js')
+const app = getApp()
 Page({
   data: {
     goodsData: {},
@@ -45,22 +46,23 @@ Page({
     // 获取页面中的条件值
     const txing = this.data.txingNum;
     let tempdata = Object.assign(
-      goodsData, 
-      {
+      goodsData, {
         ifpingjia: (goodsData.txing === txing) ? false : true,
         ifzhifu: false,
         buyTime: timeUtil.formatTime()
       }
-      )
+    )
 
     let tempzhangdanItem = []
     tempzhangdanItem.push(tempdata)
     // 创建新的数据对象
+    const userid = app.globalData.userInfo.userId
     const newData = {
       zhangdanItem: tempzhangdanItem,
       jiluTime: timeUtil.formatTime(),
       ifpingjia: (goodsData.txing === txing) ? false : true,
       ifzhifu: false,
+      userid:userid,
     };
 
     // 从本地存储中获取名为 'AllZhangdanList' 的数组，如果不存在则默认为空数组
@@ -79,54 +81,80 @@ Page({
   },
   //10:支付
   jiesuan(e) {
-    wx.showToast({
-      title: '成功',
-      icon: 'success',
-      duration: 2000,
-      success: res => {
-         // 获取当前商品数据
-        let goodsData = this.data.goodsData;
-        // 获取页面中的条件值
-        const txing = this.data.txingNum;
-        let tempdata = Object.assign(
-          goodsData, 
-          {
-            ifpingjia: (goodsData.txing === txing) ? false : true,
-            ifzhifu: true,
-            buyTime: timeUtil.formatTime()
-          }
+    if (app.globalData.token != "") {
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 2000,
+        success: res => {
+          // 获取当前商品数据
+          let goodsData = this.data.goodsData;
+          // 获取页面中的条件值
+          const txing = this.data.txingNum;
+          const userid = app.globalData.userInfo.userId
+          let tempdata = Object.assign(
+            goodsData, {
+              ifpingjia: (goodsData.txing === txing) ? false : true,
+              ifzhifu: true,
+              buyTime: timeUtil.formatTime(),
+              userid:userid
+            }
           )
 
-        let tempzhangdanItem = []
-        tempzhangdanItem.push(tempdata)
-        // 创建新的数据对象
-        const newData = {
-          zhangdanItem: tempzhangdanItem,
-          jiluTime: timeUtil.formatTime(),
-          ifpingjia: (goodsData.txing === txing) ? false : true,
-          ifzhifu: true,
-        };
+          let tempzhangdanItem = []
+          tempzhangdanItem.push(tempdata)
+          // 创建新的数据对象
+          const newData = {
+            zhangdanItem: tempzhangdanItem,
+            jiluTime: timeUtil.formatTime(),
+            ifpingjia: (goodsData.txing === txing) ? false : true,
+            ifzhifu: true,
+            userid:userid
+          };
+          //存到数据库
+          const sqlData = otherfun.getSqlOneData(newData.zhangdanItem)
+          sqlData.forEach((x, i) => {
+            wx.request({
+              url: ' http://127.0.0.1:8081/hx/bszhangdan/post',
+              method: 'POST',
+              data: x,
+              success: res => {
+                console.log(res, '成功');
+              }
+            })
+          })
 
-        // 从本地存储中获取名为 'AllZhangdanList' 的数组，如果不存在则默认为空数组
-        let AllZhangdanList = wx.getStorageSync('AllZhangdanList') || [];
+          let AllZhangdanList = wx.getStorageSync('AllZhangdanList') || [];
 
-        // 将新数据添加到数组中
-        AllZhangdanList.push(newData);
+          // 将新数据添加到数组中
+          AllZhangdanList.push(newData);
 
-        // 将更新后的数组存储到本地存储中
-        wx.setStorageSync('AllZhangdanList', AllZhangdanList);
-        const relaunch = setTimeout(() => {
-          wx.reLaunch({
-            url: '/pages/shop/shop'
-          });
-        }, 1500)
-      }
-    })
-    const relaunch = setTimeout(() => {
-      wx.reLaunch({
-        url: '/pages/shop/shop'
-      });
-    }, 1500)
+          // 将更新后的数组存储到本地存储中
+          wx.setStorageSync('AllZhangdanList', AllZhangdanList);
+          const relaunch = setTimeout(() => {
+            wx.reLaunch({
+              url: '/pages/shop/shop'
+            });
+          }, 1500)
+        }
+      })
+      const relaunch = setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/shop/shop'
+        });
+      }, 1500)
+    } else {
+      wx.showToast({
+        title: '未登录',
+        success: res => {
+          const denglu = setTimeout(() => {
+            wx.switchTab({
+              url: '../denglu/denglu',
+            })
+          }, 1500)
+        }
+      })
+    }
   },
   onLoad(query) {
     const {

@@ -70,9 +70,9 @@ Page({
       title: 'cg',
     })
     const regeisterData = {
-      username:this.data.nickName === "" ||  this.data.userInfo.nickName,
-      password:this.data.passWord === "" ||  this.data.userInfo.passWord,
-      avatarurl:this.data.avatarUrl === "" ||  this.data.userInfo.avatarUrl,
+      username:this.data.nickName ,
+      password:this.data.passWord ,
+      avatarurl:this.data.avatarUrl,
       id: this.data.userInfo.userId
     }
     console.log(regeisterData);

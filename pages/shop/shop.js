@@ -1,6 +1,23 @@
 // index.js
 const timeUtil = require('../../utils/times.js');
-// console.log(timeUtil.formatTime(),'lll')
+const otherfun = require('../../utils/otherfun.js')
+const app = getApp()
+function getSqlOneData(Arr){
+  const userid = app.globalData.userInfo.userId
+  return Arr.map(x => {
+    const { buyTime, num, id, tlove, txing } = x
+    return {
+      userid: userid,
+      goodsid: id,
+      zamount: num,
+      ztime: buyTime,
+      isfavorite: tlove,
+      goodsrate: txing
+    }
+  })
+}
+
+
 Page({
   data: {
     currentIndex: 0, //选中的下标
@@ -259,38 +276,66 @@ Page({
   },
   //10:支付
   jiesuan (e) {
-    wx.showToast({
-      title: '成功',
-      icon: 'success',
-      duration: 2000,
-      success:res=>{
-        let zhangdan = this.data.showList.filter(x => x.selected);
-        let zhangdanList = zhangdan.map(item => ({
-          ...item,
-          ifpingjia: false,
-          ifzhifu: true,
-          buyTime: timeUtil.formatTime()
-        }));
-        // 将处理后的数据存储到本地缓存
-        let AllZhangdanList = wx.getStorageSync('AllZhangdanList') || [];
-        // 假设你要添加的新数据是一个对象
-        let newData = {
-          zhangdanItem: zhangdanList,
-          jiluTime:timeUtil.formatTime(),
-          ifpingjia: false,
-          ifzhifu: true,
-        };
-        // 将新数据添加到数组中
-        AllZhangdanList.push(newData);
-        // 将更新后的数组存储到本地存储中
-        wx.setStorageSync('AllZhangdanList', AllZhangdanList);
-      }
-    })
-    const relaunch = setTimeout(() =>{
-      wx.reLaunch({
-        url: '/pages/shop/shop'
-      });
-    },1500)
+    if(app.globalData.token != ""){
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 2000,
+        success:res=>{
+          let zhangdan = this.data.showList.filter(x => x.selected);
+          const userid = app.globalData.userInfo.userId
+          let zhangdanList = zhangdan.map(item => ({
+            ...item,
+            userid:userid,
+            ifpingjia: false,
+            ifzhifu: true,
+            buyTime: timeUtil.formatTime()
+          }));
+          // 将处理后的数据存储到本地缓存
+          let AllZhangdanList = wx.getStorageSync('AllZhangdanList') || [];
+          // 假设你要添加的新数据是一个对象
+          let newData = {
+            zhangdanItem: zhangdanList,
+            jiluTime:timeUtil.formatTime(),
+            ifpingjia: false,
+            ifzhifu: true,
+            userid:userid,
+          };
+          const sqlData = otherfun.getSqlOneData(newData.zhangdanItem)
+          sqlData.forEach((x, i) => {
+            wx.request({
+              url: ' http://127.0.0.1:8081/hx/bszhangdan/post',
+              method: 'POST',
+              data:x,
+              success: res => {
+                console.log(res,'成功');
+              }
+            })
+          })
+          // 将新数据添加到数组中 
+          AllZhangdanList.push(newData);
+          // 将更新后的数组存储到本地存储中
+          wx.setStorageSync('AllZhangdanList', AllZhangdanList);
+        }
+      })
+      const relaunch = setTimeout(() =>{
+        wx.reLaunch({
+          url: '/pages/shop/shop'
+        });
+      },1500)
+    }else{
+      wx.showToast({
+        title: '未登录',
+        success: res => {
+          const denglu = setTimeout(() => {
+            wx.switchTab({
+              url: '../denglu/denglu',
+            })
+          },1500)
+        }
+      })
+    }
+
   },
   onLoad() {
     this.getShop();

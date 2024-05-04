@@ -1,4 +1,4 @@
-<!-- 商品详情页 -->
+<!-- 商品评价页面 -->
 <!-- 商品名称 -->
 <view class="detail-container">
   <view class="head">
@@ -10,8 +10,8 @@
     <view class="price">价格： <text>{{goodsData.tprice}}¥</text> </view>
     <view class="address">地址： <text>{{goodsData.tcity}}</text> </view>
     <view class="detail">
-    <view>商品详情：</view>
-       
+      <view>商品详情：</view>
+
       <view class="tinfo"> {{goodsData.tdetail}}</view>
     </view>
 
@@ -20,31 +20,21 @@
 
 </view>
 
-<van-dialog
-  use-slot
-	title="评价"
-	height="60%"
-	width="80%"
-  show="{{ show }}"
-  show-cancel-button
-  confirm-button-open-type="getUserInfo"
-  bind:close="onClose"
-  bind:getuserinfo="getUserInfo"
->
-<view class="pingjiacontent">
-      <view class="tlove" catchtap="changetlove" data-index="{{goodsData.id}}">
-				<view>是否喜欢：</view>
-        <image src="{{goodsData.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
-      </view>
-      <view class="xing">
+<van-dialog use-slot title="评价" height="60%" width="80%" show="{{ show }}" show-cancel-button confirm-button-open-type="getUserInfo" bind:close="onClose" bind:getuserinfo="getUserInfo">
+  <view class="pingjiacontent">
+    <view class="tlove" catchtap="changetlove" data-index="{{goodsData.id}}">
+      <view>是否喜欢：</view>
+      <image src="{{goodsData.tlove ? '../../db/tubiao/lovel.png' : '../../db/tubiao/lovea.png'}}" mode="" />
+    </view>
+    <view class="xing">
       <view>评分：</view>
-        <view class="stars-box">
-          <view wx:for="{{xingList}}" wx:key="index" wx:for-item="item1">
-            <image wx:for-index="index" src="{{item1}}" class="star" data-index="{{index}}" catchtap="scoring" data-id="{{item.id}}">
-            </image>
-          </view>
+      <view class="stars-box">
+        <view wx:for="{{xingList}}" wx:key="index" wx:for-item="item1">
+          <image wx:for-index="index" src="{{item1}}" class="star" data-index="{{index}}" catchtap="scoring" data-id="{{item.id}}">
+          </image>
         </view>
       </view>
+    </view>
   </view>
 </van-dialog>
 
@@ -52,7 +42,7 @@
 
 <!-- 购物车 -->
 <view class='shoping'>
-	<view class="pingjia" bindtap="opendialog" >点击评价</view>
+  <view class="pingjia" bindtap="opendialog">点击评价</view>
   <view class='buy' catchtap="fukuan">付款</view>
   <view class='buy' catchtap="fanhui">返回</view>
 </view>

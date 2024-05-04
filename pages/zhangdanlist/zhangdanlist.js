@@ -86,22 +86,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // let storagedataList = wx.getStorageSync('AllZhangdanList') || [];
-    // let AllZhangdanList = []
-    // storagedataList.forEach((item,index) =>{
-    //   if(item.zhangdanItem.every(x => x.ifpingjia)){
-    //     item.ifpingjia = true
-    //   }
-    //   if(item.zhangdanItem.every(x => x.ifzhifu)){
-    //     item.ifzhifu = true
-    //   }
-
-
-    //   AllZhangdanList.push(Object.assign(item ,{ totalPrice : this.getTotalPrice(item.zhangdanItem)}))
-    // })
-    // this.setData({
-    //   AllZhangdanList,
-    // })
   },
 
   /**
