@@ -1,4 +1,7 @@
 // pages/tourism/tourism.js
+const app = getApp()
+
+
 const tourismlist = [{
   id: 1,
   name: "南岳衡山",
@@ -59,7 +62,12 @@ Page({
     currentIndex: 0, //选中的下标
     bannerArr: [], //轮播图数据
     tourismList: [],
-    goodsdata: []
+    goodsdata: [],
+    addshow:false,
+    addressvalue:'',
+    tname:'',
+    textvalue:'',
+    fileList: [],
   },
   gototourismdetail(){
     wx.navigateTo({
@@ -80,6 +88,75 @@ Page({
   gotoShop(){
     wx.switchTab({
       url: '../shop/shop',
+    })
+  },
+  openaddpopup(){
+    // if(app.globalData.token != ""){
+    //   this.setData({
+    //     addshow:true
+    //   })
+    // }else{
+    //   wx.showToast({
+    //     title: '未登录',
+    //     icon:'error',
+    //     success: res =>{
+    //       setTimeout(()=>{
+    //         wx.switchTab({
+    //           url: '../denglu/denglu',
+    //         })
+    //       },2000)
+    //     }
+    //   })
+    // }
+    this.setData({
+      addshow:true
+    })
+  },
+  onClose() {
+    this.setData({ addshow: false });
+  },
+  onChange0(event){
+    this.setData({
+      tname:event.detail
+    })
+  },
+  onChange1(event) {
+    // event.detail 为当前输入的值
+    console.log(event.detail);
+    this.setData({
+      addressvalue:event.detail
+    })
+  },
+  onChange2(event) {
+    // event.detail 为当前输入的值
+    console.log(event.detail);
+    this.setData({
+      textvalue:event.detail
+    })
+  },
+  afterRead(event) {
+    const { file } = event.detail;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    const { fileList = [] } = this.data;
+        fileList.push({ ...file, });
+        this.setData({ fileList });
+  },
+  closeadd(){
+    const obj = {
+      id: this.data.tourismList.length+1,
+      name:this.data.tname,
+      address:this.data.addressvalue,
+      info: this.data.textvalue,
+      imgArr:this.data.fileList
+    }
+    wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 2000
+    })
+
+    this.setData({
+      tourismList:this.data.tourismList.push(obj)
     })
   },
   /**

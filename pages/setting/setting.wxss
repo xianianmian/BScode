@@ -56,3 +56,23 @@
 .weui-input{
     flex: 6;
 }
+
+.content-form{
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fromtitele{
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+  color: red;
+  text-align: center;
+}
+.formname{
+  font-size: large;
+  color: red;
+  text-align: left;
+}

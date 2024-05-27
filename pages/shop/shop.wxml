@@ -1,7 +1,7 @@
 <!--商品首页-->
-<view class="tips">
+<!-- <view class="tips">
   <tipx-item></tipx-item>
-</view>
+</view> -->
 
 <view class="search">
   <view class="input">

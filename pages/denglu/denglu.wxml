@@ -25,12 +25,19 @@
 
 <view class="zhangdan">
 	<view class="ztitle">
-		我的订单
+		我的历史
+	</view>
+	<view class="viewhistory">
+
 	</view>
 	<view class="menulist">
+		<!-- <view class="menu-item" catchtap="gotozhangdan" data-index="0">
+      <image src="../../db/tubiao/history.png" mode=""/>
+      <view>浏览历史</view>
+    </view> -->
 		<view class="menu-item" catchtap="gotozhangdan" data-index="0">
       <image src="../../db/tubiao/alldingdan.png" mode=""/>
-      <view>全部订单</view>
+      <view>购物历史</view>
     </view>
 		<view class="menu-item"  catchtap="gotozhangdan" data-index="1">
       <image src="../../db/tubiao/daifukuan.png" mode=""/>
@@ -52,7 +59,7 @@
 		<image src="../../images/右箭头.png" mode="" class="goicon" />
 	</view>
 
-	<view class="acard">
+	<view class="acard" bindtap="openys">
 		<view class="left">
 		<image class="iconimg" src="../../db/tubiao/yinsi.png" mode=""/>
 		隐私政策
@@ -69,3 +76,52 @@
 	</view>
 </view>
 
+<!-- html -->
+<van-dialog
+  use-slot
+  title="隐私政策"
+  show="{{ ysshow }}"
+  show-cancel-button
+  confirm-button-open-type="getys"
+  bind:close="onCloseys"
+>
+  <view class="ysbox">
+		<text>
+			感谢您使用我们的小程序。为了保护您的个人信息安全，我们制定了以下隐私协议，详细说明了我们收集、使用和保护您的个人信息的方式。
+
+信息收集
+在您使用我们的小程序时，我们可能会收集以下信息：
+
+设备信息：包括设备型号、操作系统版本、唯一设备标识符等；
+日志信息：包括您使用小程序的历史记录、错误日志等；
+位置信息：仅当您明确授权时，我们可能会收集您的地理位置信息；
+其他信息：您在使用小程序时提供的其他信息。
+信息使用
+我们收集的个人信息将用于以下目的：
+
+提供和改进小程序的功能和服务；
+向您发送相关通知和更新；
+处理您的反馈和投诉；
+针对您的个人喜好和兴趣提供个性化推荐；
+履行与您的交易或请求相关的合同义务。
+信息共享
+我们承诺不会向任何第三方出售、交易或转让您的个人信息，除非获得您的明确同意或法律要求。
+在以下情况下，我们可能会与第三方共享部分个人信息：
+
+当您明确同意共享；
+在法律要求或政府机关的合法授权下；
+为了保护我们的权益、财产和安全，包括调查欺诈、违法行为或威胁等；
+与我们的关联公司、合作伙伴共享，但我们将确保他们遵守本隐私协议。
+信息安全
+我们采取合理的安全措施，以保护您的个人信息免于丢失、滥用、未经授权访问、披露、更改或销毁。
+您还需注意，通过互联网传输的信息并非绝对安全，我们无法保证您通过小程序发送的数据的绝对安全性。
+
+未成年人保护
+我们鼓励父母和监护人指导未满18岁的未成年人使用我们的小程序。我们不会有意收集未成年人的个人信息，如果发现未成年人向我们提供了个人信息，请及时联系我们删除相关信息。
+
+其他网站链接
+我们的小程序可能包含其他第三方网站的链接。我们不对这些第三方网站的隐私政策和做法负责，请您仔细阅读其隐私政策。
+
+		</text>
+	</view>
+</van-dialog>

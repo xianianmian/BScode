@@ -11,11 +11,13 @@ App({
     })
   },
   globalData: {
+    tuijianbtn: true,
     userInfo: {
       avatarUrl:'',
       nickName:'',
       passWord:'',
-      userId:''
+      userId:'',
+      authortype:3
     },
     token:''
   }

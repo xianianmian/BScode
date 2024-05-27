@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "msg": "注册成功",
+  "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNDQyIsImlhdCI6MTcxNTg0Nzg5OCwiZXhwIjoxNzE1OTM0Mjk4fQ.cc21-FPELR-DGTNvmOtQaMv5aQfz9XDc-vs9GN1vQlw",
+      "userData": {
+          "id": 5,
+          "username": "CCC",
+          "password": "12345",
+          "avatarurl": ""
+      }
+  }
+}

@@ -136,3 +136,28 @@ page {
   font-size: 20px;
   color: red;
 }
+.add-btn{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 100rpx;
+  text-align: center;
+  background-color: rgb(177,201,65);
+  font-size: 20px;
+  line-height: 100rpx;
+  z-index: 4;
+  color: #fff;
+}
+
+.content-form{
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formname{
+  font-size: large;
+  color: red;
+  text-align: left;
+}

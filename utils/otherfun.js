@@ -14,6 +14,23 @@ function getSqlOneData(Arr){
     }
   })
 }
+
+function customSort(arr, order) {
+  let newArr = [];
+  // console.log(arr,'arr')
+  // console.log(order,'order')
+  order.forEach(id => {
+    let item = arr.find(obj => obj.id == id);
+    if (item) newArr.push(item);
+  });
+
+  arr.forEach(item => {
+    if (!newArr.includes(item)) newArr.push(item);
+  });
+  // console.log(newArr,'ss');
+  return newArr;
+}
 module.exports = {
-	getSqlOneData:getSqlOneData
+  getSqlOneData:getSqlOneData,
+  customSort:customSort
 }

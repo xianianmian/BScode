@@ -1,8 +1,8 @@
 <!--首页-->
 
-<view class="tips" >
+<!-- <view class="tips" >
   <tipx-item></tipx-item>
-</view>
+</view> -->
 
 <view class='banner'>
   <swiper autoplay='true' interval='3000' bindchange='swiperChange' circular='true'>
@@ -27,7 +27,7 @@
   <view class="right" bindtap="gototdetail" data-index="{{item.id}}">
     <view>
       <view class="jdname">{{item.name}}</view>
-      <view style="text-align: center;">地点：<van-tag type="success"  size="large">{{item.address}}</van-tag>
+      <view style="text-align: center;">地点：<van-tag type="success" size="large">{{item.address}}</van-tag>
       </view>
       <view class="jddesc">
         {{item.info[0]}}
@@ -45,15 +45,63 @@
 
 <view class="shangping" wx:for="{{goodsdata}}" wx:key="{{item.id}}">
   <view class="img" style="text-align: center;" bindtap="gotoShop">
-  <image src="{{item.tavartar}}" mode=""/>
+    <image src="{{item.tavartar}}" mode="" />
   </view>
   <view class="info">
     <view class="imgTitle">
-  {{item.tname}}
-  </view>
-  <view class="price">
-    {{item.tprice}}元
-  </view>
+      {{item.tname}}
+    </view>
+    <view class="price">
+      {{item.tprice}}元
+    </view>
   </view>
 
+
 </view>
+<view class="add-btn" bindtap="openaddpopup">
+  我要上传
+</view>
+<van-popup show="{{ addshow }}" bind:close="onClose">
+  <view class="content-form">
+  <view style="width: 80vw;">
+    <view class="form-item">
+    <view class="formname">名称：</view>
+      <view>
+        <van-cell-group>
+          <van-field model:value="{{ tname }}" placeholder="请输入地名称" border="{{ false }}" bind:change="onChange0"
+          size="large"/>
+        </van-cell-group>
+      </view>
+    </view>
+    <view class="form-item">
+    <view class="formname">地点：</view>
+      <view>
+        <van-cell-group>
+          <van-field model:value="{{ addressvalue }}" placeholder="请输入地点名" border="{{ false }}" bind:change="onChange1"
+          size="large"/>
+        </van-cell-group>
+      </view>
+    </view>
+    <view class="form-item">
+    <view class="formname">信息：</view>
+      <view>
+        <van-cell-group>
+          <van-field model:value="{{ textvalue }}" autosize placeholder="请输入信息" type="textarea" border="{{ false }}" 
+          size="large"
+          bind:change="onChange2" />
+        </van-cell-group>
+      </view>
+    </view>
+    <view class="form-item">
+    <view class="formname">图片：</view>
+      <view>
+        <van-uploader file-list="{{ fileList }}" max-count="3" bind:after-read="afterRead" />
+      </view>
+    </view>
+    <view class="form-item">
+    <button class="close-add" type="primary" bindtap="closeadd">提交</button>
+    </view>
+  </view>
+
+  </view>
+</van-popup>

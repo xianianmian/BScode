@@ -1,70 +1,138 @@
 <!--设置-->
 <view class="setting-page">
-<view style="text-align: center; font-size: 24px;">一些设置</view>
-<view class="btn-item">
-	<button open-type="openSetting" class="address-setting"  bindopensetting="callback">位置相关设置页</button>
-</view>
-<view class="btn-item">
-	<button bindtap="changeShowModle" class="userinfo-setting"  >个人信息设置</button>
-</view>
-<view class="btn-item">
-	<button open-type="openSetting" class="recommend-setting" >推荐设置</button>
-</view>
+  <view style="text-align: center; font-size: 24px;">一些设置</view>
+  <view class="btn-item">
+    <button open-type="openSetting" class="address-setting" bindopensetting="callback">位置相关设置页</button>
+  </view>
+  <view class="btn-item">
+    <button open-type="" class="recommend-setting" bindtap="changetuijianShowModle">推荐设置</button>
+  </view>
+  <view class="btn-item">
+    <button bindtap="changeShowModle" class="userinfo-setting">个人信息设置</button>
+  </view>
+  <!-- <view class="btn-item" wx:if="{{userInfo.authortype != 3}}">
+	<button bindtap="" class="userinfo-setting"  >特产、景点信息上传设置</button>
+</view> -->
+  <view class="btn-item" wx:if="{{userInfo.authortype != 3}}">
+    <button bindtap="opengoodssetting" class="userinfo-setting">特产商品信息上传中心</button>
+  </view>
+  <view class="btn-item" wx:if="{{userInfo.authortype === 1}}">
+    <button bindtap="openshenhe" class="userinfo-setting">审核设置</button>
+  </view>
 
-<van-popup show="{{ showModle }}" bind:close="onClose">
-<view class="modleContent">
-  <view class="btns">
-  <van-button round block type="primary" bindtap="getUserinfo">查看个人信息</van-button>
-</view>
-<view class="btns">
-  <van-button round block type="warning" bindtap="changeUserinfo">修改个人信息 </van-button>
-</view>
-</view>
 
-</van-popup>
-
-<van-dialog
-  use-slot
-  title="用户信息"
-  show="{{ userInfoShow }}"
-  show-cancel-button
-  confirm-button-open-type="getUserInfo"
-  bind:close="useronClose"
-  bind:getuserinfo="getUserInfo"
->
-<view>
-  <image src="{{userInfo.avatarUrl}}" />
-</view>
-<view style="text-align: center;font-size: 20px;">账号名称：{{userInfo.nickName}}</view>
-</van-dialog>
-
-<van-dialog
-  use-slot
-  title="修改个人信息"
-  show="{{ changeUserInfoShow }}"
-  show-cancel-button
-  confirm-button-open-type="confirmChangeUserInfo"
-  bind:close="changeUseronClose"
-  bind:getuserinfo="confirmChangeUserInfo"
->
-<view>
-  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-  </button> 
-  <form catchsubmit="formSubmit">
-    <view class="row">
-      <view class="text1">昵称：</view>
-      <input type="nickname" class="weui-input" placeholder="请输入昵称" bind:change="onInputChange" />
-      
+  <van-popup show="{{ showModle }}" bind:close="onClose">
+    <view class="modleContent">
+      <view class="btns">
+        <van-button round block type="primary" bindtap="getUserinfo">查看个人信息</van-button>
+      </view>
+      <view class="btns">
+        <van-button round block type="warning" bindtap="changeUserinfo">修改个人信息 </van-button>
+      </view>
     </view>
-    <view class="row">
-      <view class="text1">密码：</view>
-      <input  password type="text" class="weui-input" placeholder="请输入密码" bind:change="onInputChangePs" value="{{userInfo.password}}" />
-      
+
+  </van-popup>
+
+  <van-dialog use-slot title="用户信息" show="{{ userInfoShow }}" show-cancel-button confirm-button-open-type="getUserInfo" bind:close="useronClose" bind:getuserinfo="getUserInfo">
+    <view>
+      <image src="{{userInfo.avatarUrl}}" />
     </view>
-    <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">修改</button>
-    
-  </form>
+    <view style="text-align: center;font-size: 20px;">账号名称：{{userInfo.nickName}}</view>
+  </van-dialog>
+
+  <van-dialog use-slot title="修改个人信息" show="{{ changeUserInfoShow }}" show-cancel-button confirm-button-open-type="confirmChangeUserInfo" bind:close="changeUseronClose" bind:getuserinfo="confirmChangeUserInfo">
+    <view>
+      <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      </button>
+      <form catchsubmit="formSubmit">
+        <view class="row">
+          <view class="text1">昵称：</view>
+          <input type="nickname" class="weui-input" placeholder="请输入昵称" bind:change="onInputChange" />
+
+        </view>
+        <view class="row">
+          <view class="text1">密码：</view>
+          <input password type="text" class="weui-input" placeholder="请输入密码" bind:change="onInputChangePs" value="{{userInfo.password}}" />
+
+        </view>
+        <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">修改</button>
+
+      </form>
+    </view>
+  </van-dialog>
+
+  <van-dialog use-slot title="推荐设置" show="{{ tuijianbtn }}" show-cancel-button confirm-button-open-type="getUserInfo" bind:close="tuijianclose" bind:getuserinfo="getUserInfo">
+    <view>
+      推荐选择:
+      <van-switch checked="{{ switchchecked }}" active-color="#07c160" bind:change="tuijianchange" />
+
+    </view>
+
+  </van-dialog>
+
+  <van-popup show="{{ goodssettingshow }}" bind:close="goodssettingonClose">
+    <view class="goddsform">
+      <view class="content-form">
+        <view style="width: 80vw;">
+          <view class="fromtitele">特产信息上传</view>
+          <view class="form-item">
+            <view class="formname">名称：</view>
+            <view>
+              <van-cell-group>
+                <van-field model:value="{{ goodsname }}" placeholder="请输入特产名称" border="{{ false }}" bind:change="onChange0" size="large" />
+              </van-cell-group>
+            </view>
+          </view>
+          <view class="form-item">
+            <view class="formname">地点：</view>
+            <view>
+              <van-cell-group>
+                <van-field model:value="{{ addressvalue }}" placeholder="请输入特产产地" border="{{ false }}" bind:change="onChange1" size="large" />
+              </van-cell-group>
+            </view>
+          </view>
+          <view class="form-item">
+            <view class="formname">信息：</view>
+            <view>
+              <van-cell-group>
+                <van-field model:value="{{ textvalue }}" autosize placeholder="请输入特产的信息" type="textarea" border="{{ false }}" size="large" bind:change="onChange2" />
+              </van-cell-group>
+            </view>
+          </view>
+          <view class="form-item">
+            <view class="formname">价格：</view>
+            <view>
+              <van-cell-group>
+                <van-field model:value="{{ goodsprice }}" autosize placeholder="请输入特产价格" border="{{ false }}" size="large" bind:change="onChange3" />
+              </van-cell-group>
+            </view>
+          </view>
+          <view class="form-item">
+            <view class="formname">种类：</view>
+            <view>
+              <view class="radio-group">
+  <radio-group>
+    <label class="radio-label" wx:for="{{typeitems}}" wx:for-item="item" wx:for-index="index" key="{{index}}">
+      <radio value="{{item.value}}" checked="{{item.checked}}" bindchange="radioChange">{{item.name}}</radio>
+    </label>
+  </radio-group>
 </view>
-</van-dialog>
+
+            </view>
+          </view>
+          <view class="form-item">
+            <view class="formname">图片：</view>
+            <view>
+              <van-uploader file-list="{{ fileList }}" max-count="3" bind:after-read="afterRead" />
+            </view>
+          </view>
+
+          <view class="form-item">
+            <button class="close-add" type="primary" bindtap="goodssettingonClose">提交</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-popup>
 </view>

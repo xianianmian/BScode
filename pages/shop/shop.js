@@ -2,10 +2,17 @@
 const timeUtil = require('../../utils/times.js');
 const otherfun = require('../../utils/otherfun.js')
 const app = getApp()
-function getSqlOneData(Arr){
+
+function getSqlOneData(Arr) {
   const userid = app.globalData.userInfo.userId
   return Arr.map(x => {
-    const { buyTime, num, id, tlove, txing } = x
+    const {
+      buyTime,
+      num,
+      id,
+      tlove,
+      txing
+    } = x
     return {
       userid: userid,
       goodsid: id,
@@ -37,65 +44,73 @@ Page({
         url: "https://www.baidu.com"
       },
     ], //轮播图数据
-    number:0,
+    number: 0,
     selectAllStatus: false, //全选
     totalPrice: '0.00', //总价格
     num: 0, //选中的选择框
     list: [], //购物车数据
-    shopList:[],
-    showList:[],
+    shopList: [],
+    showList: [],
     selectedName: '',
     popup1: false,
     popup2: false,
-    addressList: ['衡阳','耒阳','南岳','常宁','祁东','衡东'],
+    addressList: ['衡阳', '耒阳', '南岳', '常宁', '祁东', '衡东'],
     addressListIndex: 0,
     selectedcity: '衡阳',
-    zhongleiList: ['熟食', '非熟食','其它'],
+    zhongleiList: ['熟食', '非熟食', '其它'],
     zhongleiListIndex: 0,
-    selectedzhonglei: '熟食'
+    selectedzhonglei: '熟食',
+    shunxu:[]
   },
-  filterName(e){
+  filterName(e) {
     this.setData({
       selectedName: e.detail.value
     })
   },
-  claerfilterName(){
+  claerfilterName() {
     const filterInfo = this.data.selectedName;
     const arr = this.data.shopList.filter(x => x.tname.includes(filterInfo));
     this.setData({
       showList: arr,
     })
-    console.log(filterInfo,'ss ', arr );
+    console.log(filterInfo, 'ss ', arr);
   },
-  resetshop(){
+  resetshop() {
     const arr = this.data.shopList;
-    this.setData({showList: arr, selectedName: '',})
+    this.setData({
+      showList: arr,
+      selectedName: '',
+    })
   },
   showPopup1() {
-    this.setData({ popup1: true });
+    this.setData({
+      popup1: true
+    });
   },
 
   closePopup1() {
     const filterInfo = this.data.selectedcity
-    const arr = this.data.shopList.filter( x => x.tcity == filterInfo)
+    const arr = this.data.shopList.filter(x => x.tcity == filterInfo)
     this.setData({
       showList: arr,
-      popup1: false 
+      popup1: false
     });
   },
   showPopup2() {
-    this.setData({ popup2: true });
+    this.setData({
+      popup2: true
+    });
   },
 
   closePopup2() {
     const filterInfo = this.data.selectedzhonglei
-    const arr = this.data.shopList.filter( x => x.tzhonglei == filterInfo)
+    const arr = this.data.shopList.filter(x => x.tzhonglei == filterInfo)
     this.setData({
       showList: arr,
-      popup2: false 
+      popup2: false
     });
   },
-  filterSelectAddress(e){
+  filterSelectAddress(e) {
     const index = e.currentTarget.dataset.index;
     const selectedcity = this.data.addressList[index]
     this.setData({
@@ -103,7 +118,7 @@ Page({
       selectedcity,
     })
   },
-  filterSelectZhonglei(e){
+  filterSelectZhonglei(e) {
     const index = e.currentTarget.dataset.index;
     const selectedzhonglei = this.data.zhongleiList[index]
     this.setData({
@@ -112,17 +127,15 @@ Page({
     })
   },
   onChange(event) {
-    const { picker, value, index } = event.detail;
-    console.log(event.detail);
   },
 
 
 
-  changetlove(e){
+  changetlove(e) {
     let idx = e.currentTarget.dataset.index;
     const arr = this.data.shopList;
     arr.forEach(x => {
-      if(x.id == idx){
+      if (x.id == idx) {
         x.tlove = !x.tlove
       }
     })
@@ -148,7 +161,7 @@ Page({
     })
   },
   //去详情页面
-  gotoproductdetail(e){
+  gotoproductdetail(e) {
     const id = e.currentTarget.dataset.index
     wx.navigateTo({
       url: `../productdetail/productdetail?id=${id}`,
@@ -158,13 +171,13 @@ Page({
   getShop() {
     wx.request({
       url: 'http://127.0.0.1:8081/hx/bsproducts/bsget',
-      success:res=>{
+      success: res => {
         const goodsdata = res.data.data;
-        const updatedGoodsData = goodsdata.map(x => {
+        let updatedGoodsData = goodsdata.map(x => {
           return {
             ...x,
             tlove: x.tlove === 1 ? true : false,
-            starlist: ["../../db/tubiao/xingl.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png","../../db/tubiao/xinga.png"]
+            starlist: ["../../db/tubiao/xingl.png", "../../db/tubiao/xinga.png", "../../db/tubiao/xinga.png", "../../db/tubiao/xinga.png", "../../db/tubiao/xinga.png"]
           };
         });
         var num = 0;
@@ -175,11 +188,23 @@ Page({
           }
           num = updatedGoodsData.length;
         }
-        this.setData({
-          shopList:updatedGoodsData,
-          showList:updatedGoodsData,
-          num: num
-        })
+        let sortData = []
+        if(this.data.shunxu.length>1){
+          sortData = otherfun.customSort(updatedGoodsData,this.data.shunxu)
+          // console.log(sortData,'lll');
+          this.setData({
+            shopList: sortData,
+            showList: sortData,
+            num: num
+          })
+        }else{
+          this.setData({
+            shopList: updatedGoodsData,
+            showList: updatedGoodsData,
+            num: num
+          })
+        }
+
       }
     })
     this.goTotalPrice();
@@ -194,10 +219,10 @@ Page({
       totalPrice: total.toFixed(2)
     });
   },
-  selectedList (e) {
+  selectedList(e) {
     var index = e.currentTarget.dataset.index;
     var list = this.data.showList;
-    var num = this.data.num; 
+    var num = this.data.num;
     var selected = list[index].selected;
     list[index].selected = !selected;
     if (list[index].selected) {
@@ -210,7 +235,7 @@ Page({
       num: num
     })
 
-    if (num == list.length) { 
+    if (num == list.length) {
       this.setData({
         selectAllStatus: true
       })
@@ -223,8 +248,8 @@ Page({
   },
 
   //7.全选------
-  selectedAll () {
-    var selectAllStatus = !this.data.selectAllStatus; 
+  selectedAll() {
+    var selectAllStatus = !this.data.selectAllStatus;
     var list = this.data.showList;
     var num = this.data.num;
     for (var i = 0; i < list.length; i++) {
@@ -243,7 +268,7 @@ Page({
     this.goTotalPrice();
   },
   //8.增加购物车数据----
-  addShop (e) {
+  addShop(e) {
     var list = this.data.showList;
     var index = e.currentTarget.dataset.index;
     var num = e.currentTarget.dataset.num;
@@ -255,7 +280,7 @@ Page({
     this.goTotalPrice();
 
   },
-  reduce (e) {
+  reduce(e) {
     var list = this.data.showList;
     var index = e.currentTarget.dataset.index;
     var num = e.currentTarget.dataset.num;
@@ -275,18 +300,18 @@ Page({
     this.goTotalPrice();
   },
   //10:支付
-  jiesuan (e) {
-    if(app.globalData.token != ""){
+  jiesuan(e) {
+    if (app.globalData.token != "") {
       wx.showToast({
         title: '成功',
         icon: 'success',
         duration: 2000,
-        success:res=>{
+        success: res => {
           let zhangdan = this.data.showList.filter(x => x.selected);
           const userid = app.globalData.userInfo.userId
           let zhangdanList = zhangdan.map(item => ({
             ...item,
-            userid:userid,
+            userid: userid,
             ifpingjia: false,
             ifzhifu: true,
             buyTime: timeUtil.formatTime()
@@ -296,19 +321,19 @@ Page({
           // 假设你要添加的新数据是一个对象
           let newData = {
             zhangdanItem: zhangdanList,
-            jiluTime:timeUtil.formatTime(),
+            jiluTime: timeUtil.formatTime(),
             ifpingjia: false,
             ifzhifu: true,
-            userid:userid,
+            userid: userid,
           };
           const sqlData = otherfun.getSqlOneData(newData.zhangdanItem)
           sqlData.forEach((x, i) => {
             wx.request({
               url: ' http://127.0.0.1:8081/hx/bszhangdan/post',
               method: 'POST',
-              data:x,
+              data: x,
               success: res => {
-                console.log(res,'成功');
+                console.log(res, '成功');
               }
             })
           })
@@ -318,12 +343,12 @@ Page({
           wx.setStorageSync('AllZhangdanList', AllZhangdanList);
         }
       })
-      const relaunch = setTimeout(() =>{
+      const relaunch = setTimeout(() => {
         wx.reLaunch({
           url: '/pages/shop/shop'
         });
-      },1500)
-    }else{
+      }, 1500)
+    } else {
       wx.showToast({
         title: '未登录',
         success: res => {
@@ -331,16 +356,59 @@ Page({
             wx.switchTab({
               url: '../denglu/denglu',
             })
-          },1500)
+          }, 1500)
         }
       })
     }
 
   },
-  onLoad() {
-    this.getShop();
+  getshunxu() {
+    if(app.globalData.tuijianbtn){
+      console.log('我出发了');
+      wx.request({
+        url: 'http://127.0.0.1:8081/hx/bsshunxu/get',
+        method: 'GET',
+        success: res => {
+          const shunxuList = res.data
+          const userid = app.globalData.userInfo.userId
+          // console.log(res.data);
+          let lastUser1Data = {
+            userid:'',
+            shunxu:''
+          };
+  
+          // 从后向前遍历数组，找到最后一个 userid 为 1 的数据
+          for (let i = shunxuList.length - 1; i >= 0; i--) {
+            if (shunxuList[i].userid === userid) {
+              lastUser1Data = shunxuList[i];
+              break;
+            }
+          }
+          // console.log(lastUser1Data);
+          let shunxu = (lastUser1Data.shunxu).split(",")
+          // console.log(shunxu);
+          this.setData({
+            shunxu:shunxu
+          })
+        }
+      })
+    }
+    else{
+      const arrlength = this.data.shopList
+      const shunxu = Array.from({length: arrlength}, (_, i) => i + 1);
+      console.log(shunxu);
+      this.setData({
+        shunxu:shunxu
+      })
+      
+    }
   },
-  onShow () {
+  onLoad() {
+    // this.getshunxu();
+    // this.getShop();
+  },
+  onShow() {
+    this.getshunxu();
     this.getShop();
     //全选------
     this.setData({

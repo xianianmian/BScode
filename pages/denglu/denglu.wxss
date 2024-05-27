@@ -31,7 +31,7 @@ image{
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 .modleContent .btns{
@@ -48,6 +48,23 @@ image{
 .ztitle{
   padding-left: 15px;
   font-size: 20px;
+}
+.viewhistory{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.his-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.his-item image{
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .menulist{
   display: flex;
@@ -94,4 +111,8 @@ image{
 .acard image{
   height: 50rpx;
   width: 50rpx;
+}
+.ysbox{
+  height: 50vh;
+  padding:20px;
 }

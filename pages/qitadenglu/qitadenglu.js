@@ -38,21 +38,27 @@ Page({
       method: 'POST',
       data: loginData,
       success: res => {
-        // console.log(res.data.data.userData.avatarurl);
+        console.log(res.data.data);
         app.globalData.userInfo.avatarUrl = res.data.data.userData.avatarurl
         app.globalData.token = res.data.data.token
         app.globalData.userInfo.userId = res.data.data.userData.id
+        app.globalData.userInfo.authortype = res.data.data.userData.authortype
         wx.showToast({
           title: '登录成功',
-        })
-        wx.navigateBack({
-          delta: 1,
-          success: function () {
-            wx.navigateTo({
-              url: 'pages/denglu/denglu?refresh=true'
-            });
+          success: res => {
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1,
+                success: function () {
+                  wx.navigateTo({
+                    url: 'pages/denglu/denglu?refresh=true'
+                  });
+                }
+              });
+            },2000)
           }
-        });
+        })
+
       },
       fail: err => {
         console.log(err);
@@ -60,7 +66,6 @@ Page({
           title: '用户名或者密码错误',
         })
       }
-
     })
 
 

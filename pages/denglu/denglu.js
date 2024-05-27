@@ -3,6 +3,7 @@ const defoultavt = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd
 
 Page({
   data: {
+    ysshow:false,
     showModle: false,
     avatarUrl: defoultavt,
     nickName: '',
@@ -27,22 +28,24 @@ Page({
     ],
   },
   changeShowModle() {
-    this.setData({
-      showModle: true
-    })
+      this.setData({
+        showModle: true
+      })
+
   },
   onClose() {
     this.setData({
       showModle: false
     })
+
   },
   gotoqitadenglu(e) {
-    wx.navigateTo({
-      url: '../qitadenglu/qitadenglu',
-      success: () =>{
-        this.onClose()
-      }
-    })
+      wx.navigateTo({
+        url: '../qitadenglu/qitadenglu',
+        success: () =>{
+          this.onClose()
+        }
+      })
   },
   gotozhuce(e) {
     wx.navigateTo({
@@ -53,10 +56,19 @@ Page({
     })
   },
   gotozhangdan(e) {
-    const index = e.currentTarget.dataset.index;
-    wx.navigateTo({
-      url: `../zhangdanlist/zhangdanlist?activeIndex=${index}`,
-    })
+    if(app.globalData.token != ""){
+      const index = e.currentTarget.dataset.index;
+      wx.navigateTo({
+        url: `../zhangdanlist/zhangdanlist?activeIndex=${index}`,
+      })
+    }else{
+      wx.showToast({
+        title: '未登录',
+        duration:2000,
+        icon:'none'
+      })
+    }
+
   },
   handleTapItem() {
     this.gotozhangdan()
@@ -64,24 +76,28 @@ Page({
   logout() {
     this.setData({
       showxingxi: false,
-      avatarUrl: defoultavt
+      avatarUrl: defoultavt,
+      nickName:'未登录'
     })
+    app.globalData.userInfo = {}
   },
   openSetting(){
     wx.navigateTo({
       url: '../setting/setting',
     })
   },
+  getys(event) {
+    console.log(event.detail);
+  },
+  openys(){
+    this.setData({ ysshow: true });
+  },
+  onCloseys() {
+    this.setData({ ysshow: false });
+  },
   onLoad(options) {
     console.log(app.globalData);
-    if (app.globalData.userInfo.avatarUrl !== "" && options.refresh === 'true') {
-      this.setData({
-        showxingxi: true,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        nickName: app.globalData.userInfo.nickName,
-        passWord: app.globalData.userInfo.passWord,
-      })
-    }
+
   },
   onShow: function () {
     this.setData({

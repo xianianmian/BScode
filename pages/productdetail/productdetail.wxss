@@ -26,15 +26,13 @@
   padding-left: 10rpx;
 }
 .detail .tinfo{
-  color: red;
+  color: rgb(17, 16, 16);
   text-indent: 20px;
 }
-.pingjia{
 
-}
 .pingjiacontent{
   position: fixed;
-  background-color: aqua;
+  background-color: #ffe;
   bottom: 60px;
   width: 100%;
   display: flex;
